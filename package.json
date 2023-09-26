@@ -4,8 +4,17 @@
   "description": "ecommerce app for retro and vintage products",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "server": "nodemon backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Karthik Mohan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }

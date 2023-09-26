@@ -1,0 +1,11 @@
+{
+  "name": "collectique",
+  "version": "1.0.0",
+  "description": "ecommerce app for retro and vintage products",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Karthik Mohan",
+  "license": "ISC"
+}

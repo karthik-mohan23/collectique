@@ -21,3 +21,7 @@ to create Model
 - npm install mongoose --save
 
 Create 3 models - for User, Products and Order
+
+create a folder config
+create a file db.js
+inside it create a function to connect to DB

@@ -33,3 +33,7 @@ install bcyptjs to hash password before saving it to database
 -npm i bcryptjs
 
 create a seeder file for seeding this data to database.
+
+<!-- seeder.js -->
+
+console.log(process.argv)

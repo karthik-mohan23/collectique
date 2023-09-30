@@ -25,3 +25,11 @@ Create 3 models - for User, Products and Order
 create a folder config
 create a file db.js
 inside it create a function to connect to DB
+
+create data folder
+add user and products data inside it
+
+install bcyptjs to hash password before saving it to database
+-npm i bcryptjs
+
+create a seeder file for seeding this data to database.

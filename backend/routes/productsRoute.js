@@ -1,24 +1,14 @@
 const router = require("express").Router();
-const productsModel = require("../models/productModel");
+
+const {
+  getAllProducts,
+  getSingleProduct,
+} = require("../controller/productsController");
 
 // to get all products
-router.get("/", async (req, res, next) => {
-  try {
-    const allProducts = await productsModel.find({});
-    res.status(200).json(allProducts);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.get("/", getAllProducts);
 
 // to get single product
-router.get("/:id", async (req, res, next) => {
-  try {
-    const singleProduct = await productsModel.findById(req.params.id);
-    res.status(200).json(singleProduct);
-  } catch (error) {
-    console.log(error);
-  }
-});
+router.get("/:id", getSingleProduct);
 
 module.exports = router;

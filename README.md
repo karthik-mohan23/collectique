@@ -34,8 +34,15 @@ install bcyptjs to hash password before saving it to database
 
 create a seeder file for seeding this data to database.
 
-<!-- seeder.js -->
-
+//seeder.js
 console.log(process.argv)
 
 <!-- frontend -->
+
+install TailwindCSS
+install DaisyUI
+
+<!-- backend -->
+
+create route folder
+create productsRoute to send products data to client

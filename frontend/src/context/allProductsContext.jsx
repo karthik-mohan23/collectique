@@ -14,8 +14,13 @@ export const ProductsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
   const fetchProducts = async () => {
-    const response = await axios.get("http://localhost:5000/api/products");
-    console.log(response);
+    dispatch({ type: "FETCH_LOADING" });
+    try {
+      const response = await axios.get("http://localhost:5000/api/products");
+      dispatch({ type: "FETCH_SUCCESS", payload: response.data });
+    } catch (error) {
+      dispatch({ type: "FETCH_ERROR" });
+    }
   };
 
   useEffect(() => {
@@ -23,7 +28,7 @@ export const ProductsProvider = ({ children }) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ state, dispatch }}>
+    <ProductsContext.Provider value={{ ...state, dispatch }}>
       {children}
     </ProductsContext.Provider>
   );

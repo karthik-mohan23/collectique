@@ -46,3 +46,8 @@ install DaisyUI
 
 create route folder
 create productsRoute to send products data to client
+
+<!-- frontend -->
+
+add Navbar
+context to fetch all products

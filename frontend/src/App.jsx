@@ -1,9 +1,12 @@
 import { Navbar } from "./components";
+import { ProductsProvider } from "./context/allProductsContext";
 
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <ProductsProvider>
+        <Navbar />
+      </ProductsProvider>
     </div>
   );
 };

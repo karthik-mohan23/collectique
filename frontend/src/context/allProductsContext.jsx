@@ -1,4 +1,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
+import productsReducer from "../reducers/productsReducer";
+import axios from "axios";
 
 const initialState = {
   loading: false,

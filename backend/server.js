@@ -8,6 +8,10 @@ const app = express();
 const configDB = require("./config/db");
 configDB();
 
+// cors
+const cors = require("cors");
+app.use(cors());
+
 // routes
 const productsRoute = require("./routes/productsRoute");
 

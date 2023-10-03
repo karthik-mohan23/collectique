@@ -1,18 +1,21 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { ProductsProvider } from "./context/allProductsContext";
 
-import { Navbar } from "./components";
 import { Home } from "./pages";
-import ProductDetails from "./components/ProductDetails";
+import { Navbar, ProductDetails } from "./components";
 
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <ProductsProvider>
         <Navbar />
-        <Home />
-        <ProductDetails />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product-details/:id" element={<ProductDetails />} />
+        </Routes>
       </ProductsProvider>
-    </div>
+    </BrowserRouter>
   );
 };
 export default App;

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className=" bg-base-100 drop-shadow-md">
@@ -33,7 +34,9 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">Collectique</a>
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
+            Collectique
+          </Link>
         </div>
         <div className="navbar-center">
           <div className="form-control">

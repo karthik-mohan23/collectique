@@ -10,14 +10,12 @@ const Products = () => {
     return <h1>Error</h1>;
   }
 
-  console.log(products);
-
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 ">
       {products.map((product) => {
-        const { name, assured, image, price, rating } = product;
+        const { _id, name, assured, image, price, rating } = product;
         return (
-          <div className="w-60">
+          <div key={_id} className="w-60">
             <div>
               <img src={image} alt={name} />
               {assured ? <p>assured</p> : ""}

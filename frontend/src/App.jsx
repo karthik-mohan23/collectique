@@ -2,6 +2,7 @@ import { ProductsProvider } from "./context/allProductsContext";
 
 import { Navbar } from "./components";
 import { Home } from "./pages";
+import ProductDetails from "./components/ProductDetails";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <ProductsProvider>
         <Navbar />
         <Home />
+        <ProductDetails />
       </ProductsProvider>
     </div>
   );

@@ -6,7 +6,6 @@ const app = express();
 
 // database
 const configDB = require("./config/db");
-configDB();
 
 // cors
 const cors = require("cors");
@@ -21,4 +20,7 @@ app.get("/", (req, res) =>
 
 app.use("/api/products", productsRoute);
 
-app.listen(process.env.PORT, () => console.log("server up"));
+app.listen(process.env.PORT, () => {
+  configDB();
+  console.log("server up");
+});

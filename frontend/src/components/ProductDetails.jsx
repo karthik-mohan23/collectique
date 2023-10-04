@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetchProductDetails from "../hooks/useFetchProductDetails";
+import Loader from "./Loader";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -8,7 +9,7 @@ const ProductDetails = () => {
   const { loading, error, productDetails } = useFetchProductDetails(id);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (error) {

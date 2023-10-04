@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useFetchProductDetails from "../hooks/useFetchProductDetails";
 import Loader from "./Loader";
+import Error from "./Error";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const ProductDetails = () => {
   }
 
   if (error) {
-    return <div>Error..</div>;
+    return <Error />;
   }
 
   console.log(productDetails);

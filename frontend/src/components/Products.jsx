@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useProductsContext } from "../context/allProductsContext";
 import Loader from "./Loader";
+import Error from "./Error";
 
 const Products = () => {
   const { loading, error, products } = useProductsContext();
@@ -9,7 +10,7 @@ const Products = () => {
     return <Loader />;
   }
   if (error) {
-    return <h1>Error</h1>;
+    return <Error />;
   }
 
   return (

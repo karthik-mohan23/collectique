@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
@@ -12,8 +12,14 @@ const cartSlice = createSlice({
       // payload = object
       const itemAddedToCart = action.payload;
 
-      if (itemAddedToCart) {
-        console.log("itemAddedToCart", itemAddedToCart);
+      const itemExistsInCart = state.cartItems.find(
+        (currentItem) => currentItem._id === itemAddedToCart._id
+      );
+
+      if (itemExistsInCart) {
+        itemAddedToCart.qty = action.payload.qty;
+      } else {
+        state.cartItems = [...state.cartItems, itemAddedToCart];
       }
     },
   },

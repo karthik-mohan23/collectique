@@ -1,13 +1,17 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import useFetchProductDetails from "../hooks/useFetchProductDetails";
-
 import { addToCart } from "../features/cart/cartSlice";
+import useFetchProductDetails from "../hooks/useFetchProductDetails";
 import Loader from "./Loader";
 import Error from "./Error";
 
 const ProductDetails = () => {
-  const { id } = useParams();
+  const [qty, setQty] = useState(1);
 
+  const dispatch = useDispatch();
+
+  const { id } = useParams();
   const { loading, error, productDetails } = useFetchProductDetails(id);
 
   if (loading) {
@@ -44,8 +48,24 @@ const ProductDetails = () => {
         <p>{countInStock} in stock</p>
         <p className="my-4 font-semibold text-xl text-orange-500">₹ {price}</p>
         {/* select input */}
-
-        <button className="btn btn-primary">Add to cart</button>
+        <div className="form-control w-full max-w-xs mb-6">
+          <label className="label">
+            <span className="label-text">Quantity</span>
+          </label>
+          <select
+            className="select select-bordered"
+            value={qty}
+            onChange={(e) => setQty(e.target.value)}>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+        </div>
+        <button
+          className="btn btn-primary"
+          onClick={() => dispatch(addToCart({ ...productDetails, qty }))}>
+          Add to cart
+        </button>
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>
       </div>

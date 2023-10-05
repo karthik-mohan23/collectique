@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import useFetchProductDetails from "../hooks/useFetchProductDetails";
+
+import { addToCart } from "../features/cart/cartSlice";
 import Loader from "./Loader";
 import Error from "./Error";
 
 const ProductDetails = () => {
   const { id } = useParams();
 
-  console.log(id);
   const { loading, error, productDetails } = useFetchProductDetails(id);
 
   if (loading) {
@@ -17,22 +18,16 @@ const ProductDetails = () => {
     return <Error />;
   }
 
-  console.log(productDetails);
   const {
     assured,
     category,
     countInStock,
     description,
     image,
-
     name,
-
     numReviews,
-
     price,
-
     rating,
-
     seller,
   } = productDetails;
   return (
@@ -47,7 +42,9 @@ const ProductDetails = () => {
         <h2 className="text-2xl md:text-3xl font-medium">{name}</h2>
         <div className="divider"></div>
         <p>{countInStock} in stock</p>
-        <p className="my-5 font-semibold text-xl text-orange-500">₹ {price}</p>
+        <p className="my-4 font-semibold text-xl text-orange-500">₹ {price}</p>
+        {/* select input */}
+
         <button className="btn btn-primary">Add to cart</button>
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>

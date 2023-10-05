@@ -9,9 +9,10 @@ import Error from "./Error";
 const ProductDetails = () => {
   const [qty, setQty] = useState(1);
 
+  const { id } = useParams();
+
   const dispatch = useDispatch();
 
-  const { id } = useParams();
   const { loading, error, productDetails } = useFetchProductDetails(id);
 
   if (loading) {

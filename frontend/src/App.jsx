@@ -3,7 +3,7 @@ import store from "./utils/store";
 import { Provider } from "react-redux";
 import { ProductsProvider } from "./context/allProductsContext";
 
-import { Home } from "./pages";
+import { Cart, Home } from "./pages";
 import { Navbar, ProductDetails } from "./components";
 
 const App = () => {
@@ -15,6 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product-details/:id" element={<ProductDetails />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </ProductsProvider>
       </Provider>

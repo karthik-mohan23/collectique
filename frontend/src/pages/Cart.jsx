@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { EmptyCart } from "../components";
+import { AiFillDelete } from "react-icons/ai";
 
 const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart);
@@ -9,9 +10,9 @@ const Cart = () => {
   }
 
   return (
-    <div className="w-[90%] max-w-5xl mx-auto">
+    <div className="w-[90%] max-w-5xl mx-auto py-16 flex flex-wrap-reverse justify-between ">
       {/* Cart item details */}
-      <div className=" max-w-xl py-16 ">
+      <div className="w-[90%] overflow-x-auto max-w-xl  ">
         <table className="table">
           {/* head */}
           <thead>
@@ -46,13 +47,38 @@ const Cart = () => {
                   </td>
                   <td>{qty}</td>
                   <th>
-                    <p className="">₹ {price}</p>
+                    <p className="">₹{price}</p>
+                  </th>
+                  <th>
+                    <AiFillDelete
+                      size={18}
+                      className="cursor-pointer hover:text-accent-focus"
+                    />
                   </th>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      </div>
+      {/* Price details */}
+      <div className="w-80 p-8 border border-primary-content mx-auto lg:mx-0 mb-14">
+        <div className="flex justify-between">
+          <p>Price(1 item)</p>
+          <p>₹12435</p>
+        </div>
+        <div className="divider"></div>
+        <div className="flex justify-between">
+          <p>Delivery Charges</p>
+          <p>
+            ₹<del>40</del> Free
+          </p>
+        </div>
+        <div className="divider"></div>
+        <div className="flex justify-between">
+          <h3 className="font-extrabold text-xl">Total amount</h3>
+          <p className="font-semibold text-xl">₹53463</p>
+        </div>
       </div>
     </div>
   );

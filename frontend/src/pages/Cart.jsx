@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { EmptyCart } from "../components";
 import { AiFillDelete } from "react-icons/ai";
+import { removeItemsFromCart } from "../features/cart/cartSlice";
 
 const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart);
+  const dispatch = useDispatch();
 
   if (cartItems.length === 0) {
     return <EmptyCart />;
@@ -26,9 +28,9 @@ const Cart = () => {
           <tbody>
             {/* row  */}
             {cartItems.map((item) => {
-              const { category, image, name, price, qty } = item;
+              const { _id, category, image, name, price, qty } = item;
               return (
-                <tr>
+                <tr key={_id}>
                   <td>
                     <div className="flex items-center space-x-3">
                       <div className="avatar">
@@ -53,6 +55,7 @@ const Cart = () => {
                     <AiFillDelete
                       size={18}
                       className="cursor-pointer hover:text-accent-focus"
+                      onClick={() => dispatch(removeItemsFromCart(_id))}
                     />
                   </th>
                 </tr>

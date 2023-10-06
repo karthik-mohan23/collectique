@@ -12,15 +12,26 @@ const cartSlice = createSlice({
       // payload = object
       const itemAddedToCart = action.payload;
 
+      // check if item exists in cart
       const itemExistsInCart = state.cartItems.find(
         (currentItem) => currentItem._id === itemAddedToCart._id
       );
 
+      // if item exists increase quantity
       if (itemExistsInCart) {
         itemAddedToCart.qty = action.payload.qty;
       } else {
+        // add item to cart
         state.cartItems = [...state.cartItems, itemAddedToCart];
       }
+    },
+    removeItemsFromCart: (state, action) => {
+      // payload=id
+      const itemToBeRemovedId = action.payload;
+
+      state.cartItems = state.cartItems.filter(
+        (currentItem) => currentItem._id !== itemToBeRemovedId
+      );
     },
   },
 });
@@ -28,6 +39,6 @@ const cartSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = cartSlice;
 // Extract and export each action creator by name
-export const { addToCart } = actions;
+export const { addToCart, removeItemsFromCart } = actions;
 // Export the reducer, either as a default or named export
 export default reducer;

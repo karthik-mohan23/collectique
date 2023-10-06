@@ -29,13 +29,13 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li>
-                <a>Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>About</a>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a>Cart</a>
+                <Link to="/cart">Cart</Link>
               </li>
             </ul>
           </div>
@@ -53,6 +53,26 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbar-end">
+          <div className="flex gap-4 me-3">
+            <Link
+              to="/"
+              className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
+              Home
+            </Link>
+            <Link
+              to="/about"
+              className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
+              About
+            </Link>
+            <Link
+              to="/cart"
+              className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
+              Cart
+            </Link>
+          </div>
+          <Link to="/login" className="btn btn-ghost normal-case text-[1rem]">
+            Login
+          </Link>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator">

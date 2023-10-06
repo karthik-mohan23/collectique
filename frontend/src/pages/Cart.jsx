@@ -1,11 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { EmptyCart } from "../components";
 import { AiFillDelete } from "react-icons/ai";
-import { removeItemsFromCart } from "../features/cart/cartSlice";
+import {
+  numberOfItemsInCart,
+  removeItemsFromCart,
+  totalPrice,
+} from "../features/cart/cartSlice";
 
 const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart);
   const dispatch = useDispatch();
+  const cartLength = useSelector(numberOfItemsInCart);
+  const amountToPay = useSelector(totalPrice);
 
   if (cartItems.length === 0) {
     return <EmptyCart />;
@@ -67,8 +73,11 @@ const Cart = () => {
       {/* Price details */}
       <div className="w-80 p-8 border border-primary-content mx-auto lg:mx-0 mb-14">
         <div className="flex justify-between">
-          <p>Price(1 item)</p>
-          <p>₹12435</p>
+          <p>
+            Price{" "}
+            {cartLength > 1 ? `(${cartLength} items)` : `(${cartLength} item)`}
+          </p>
+          <p>₹{amountToPay}</p>
         </div>
         <div className="divider"></div>
         <div className="flex justify-between">
@@ -80,7 +89,7 @@ const Cart = () => {
         <div className="divider"></div>
         <div className="flex justify-between">
           <h3 className="font-extrabold text-xl">Total amount</h3>
-          <p className="font-semibold text-xl">₹53463</p>
+          <p className="font-semibold text-xl">₹{amountToPay}</p>
         </div>
       </div>
     </div>

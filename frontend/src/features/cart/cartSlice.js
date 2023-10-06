@@ -42,3 +42,9 @@ const { actions, reducer } = cartSlice;
 export const { addToCart, removeItemsFromCart } = actions;
 // Export the reducer, either as a default or named export
 export default reducer;
+
+// to get total cart length
+export const numberOfItemsInCart = (store) => store.cart.cartItems.length;
+// calculate price
+export const totalPrice = (store) =>
+  store?.cart?.cartItems?.reduce((acc, item) => acc + item.qty * item.price, 0);

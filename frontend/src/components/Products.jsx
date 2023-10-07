@@ -14,7 +14,7 @@ const Products = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 ">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 py-20">
       {products.map((product) => {
         const { _id, name, assured, image, price, rating } = product;
         return (

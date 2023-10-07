@@ -10,18 +10,14 @@ const orderSchema = new mongoose.Schema(
     },
     orderItems: [
       {
+        name: { type: String, required: true },
+        qty: { type: Number, required: true },
+        image: { type: String, required: true },
+        price: { type: Number, required: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
           required: true,
           ref: "Product",
-        },
-        qty: {
-          type: Number,
-          required: true,
-        },
-        billAmount: {
-          type: Number,
-          required: true,
         },
       },
     ],
@@ -53,12 +49,6 @@ const orderSchema = new mongoose.Schema(
       updateTime: { type: String },
       emailAddress: { type: String },
     },
-    itemsPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-
     totalPrice: {
       type: Number,
       required: true,

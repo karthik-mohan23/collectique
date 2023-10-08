@@ -11,7 +11,6 @@ const PaymentPage = () => {
               type="radio"
               name="radio-2"
               className="radio radio-primary"
-              checked
             />
             <label>Razorpay</label>
           </div>

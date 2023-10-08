@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: [],
+  shippingAddress: {},
 };
 
 const cartSlice = createSlice({
@@ -33,13 +34,20 @@ const cartSlice = createSlice({
         (currentItem) => currentItem._id !== itemToBeRemovedId
       );
     },
+    saveShippingAddress: (state, action) => {
+      // payload = object
+      const address = action.payload;
+      if (address) {
+        console.log(address);
+      }
+    },
   },
 });
 
 // Extract the action creators object and the reducer
 const { actions, reducer } = cartSlice;
 // Extract and export each action creator by name
-export const { addToCart, removeItemsFromCart } = actions;
+export const { addToCart, removeItemsFromCart, saveShippingAddress } = actions;
 // Export the reducer, either as a default or named export
 export default reducer;
 

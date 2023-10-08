@@ -6,7 +6,7 @@ const Navbar = () => {
   const amountToPay = useSelector(totalPrice);
 
   return (
-    <div className=" bg-base-100 drop-shadow-md">
+    <header className=" bg-base-100 drop-shadow-md">
       <div className="navbar w-[90%] max-w-5xl mx-auto">
         <div className="navbar-start">
           <div className="dropdown md:hidden">
@@ -64,11 +64,6 @@ const Navbar = () => {
               className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
               About
             </Link>
-            <Link
-              to="/cart"
-              className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
-              Cart
-            </Link>
           </div>
           <Link to="/login" className="btn btn-ghost normal-case text-[1rem]">
             Login
@@ -110,7 +105,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 export default Navbar;

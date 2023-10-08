@@ -57,7 +57,9 @@ const ShippingAddressPage = () => {
             />
           </div>
           <div className="form-control mt-4">
-            <button className="btn btn-secondary">Continue to payment</button>
+            <Link to="/payment" className="btn btn-secondary">
+              Continue
+            </Link>
           </div>
         </form>
       </div>

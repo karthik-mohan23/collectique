@@ -3,7 +3,14 @@ import store from "./utils/store";
 import { Provider } from "react-redux";
 import { ProductsProvider } from "./context/allProductsContext";
 
-import { Cart, Home, Login, ShippingAddressPage, Signup } from "./pages";
+import {
+  Cart,
+  Home,
+  Login,
+  PaymentPage,
+  ShippingAddressPage,
+  Signup,
+} from "./pages";
 import { Navbar, ProductDetails } from "./components";
 
 const App = () => {
@@ -19,6 +26,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/address" element={<ShippingAddressPage />} />
+            <Route path="/payment" element={<PaymentPage />} />
           </Routes>
         </ProductsProvider>
       </Provider>

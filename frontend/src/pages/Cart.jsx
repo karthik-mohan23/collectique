@@ -6,6 +6,7 @@ import {
   removeItemsFromCart,
   totalPrice,
 } from "../features/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart);
@@ -90,6 +91,12 @@ const Cart = () => {
         <div className="flex justify-between">
           <h3 className="font-extrabold text-xl">Total amount</h3>
           <p className="font-semibold text-xl">₹{amountToPay}</p>
+        </div>
+        <div className="divider"></div>
+        <div>
+          <Link to="/address" className="btn  btn-accent">
+            Checkout
+          </Link>
         </div>
       </div>
     </div>

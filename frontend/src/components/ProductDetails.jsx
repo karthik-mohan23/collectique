@@ -24,6 +24,7 @@ const ProductDetails = () => {
   }
 
   const {
+    _id,
     assured,
     category,
     countInStock,

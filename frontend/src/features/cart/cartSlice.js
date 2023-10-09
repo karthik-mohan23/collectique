@@ -38,7 +38,7 @@ const cartSlice = createSlice({
       // payload = object
       const address = action.payload;
       if (address) {
-        console.log(address);
+        state.shippingAddress = address;
       }
     },
   },

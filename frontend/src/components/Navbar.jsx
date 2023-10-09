@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { numberOfItemsInCart, totalPrice } from "../features/cart/cartSlice";
+import { numberOfItemsInCart, totalPrice } from "./cart/cartSlice";
 const Navbar = () => {
   const cartLength = useSelector(numberOfItemsInCart);
   const amountToPay = useSelector(totalPrice);

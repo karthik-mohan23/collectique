@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { ProductsProvider } from "./context/allProductsContext";
 
 import {
+  AdminDashboard,
   Cart,
   Home,
   Login,
@@ -11,7 +12,7 @@ import {
   ShippingAddressPage,
   Signup,
 } from "./pages";
-import { Navbar, ProductDetails } from "./components";
+import { Footer, Navbar, ProductDetails } from "./components";
 
 const App = () => {
   return (
@@ -27,7 +28,9 @@ const App = () => {
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/address" element={<ShippingAddressPage />} />
             <Route path="/payment" element={<PaymentPage />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>
+          <Footer />
         </ProductsProvider>
       </Provider>
     </BrowserRouter>

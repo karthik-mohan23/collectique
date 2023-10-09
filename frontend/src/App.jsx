@@ -8,9 +8,12 @@ import {
   Cart,
   Home,
   Login,
+  OrderRecords,
   PaymentPage,
+  ProductManagement,
   ShippingAddressPage,
   Signup,
+  UserManagement,
 } from "./pages";
 import { Footer, Navbar, ProductDetails } from "./components";
 
@@ -29,6 +32,12 @@ const App = () => {
             <Route path="/address" element={<ShippingAddressPage />} />
             <Route path="/payment" element={<PaymentPage />} />
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/user-management" element={<UserManagement />} />
+            <Route path="/admin/order-records" element={<OrderRecords />} />
+            <Route
+              path="/admin/product-management"
+              element={<ProductManagement />}
+            />
           </Routes>
           <Footer />
         </ProductsProvider>

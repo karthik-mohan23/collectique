@@ -4,7 +4,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ShippingAddressPage from "./ShippingAddressPage";
 import PaymentPage from "./PaymentPage";
-import AdminDashboard from "./AdminDashboard";
+import AdminDashboard from "./admin/AdminDashboard";
 
 export {
   Home,

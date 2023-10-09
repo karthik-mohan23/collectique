@@ -5,7 +5,7 @@ import {
   numberOfItemsInCart,
   removeItemsFromCart,
   totalPrice,
-} from "../components/cart/cartSlice";
+} from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
 
 const Cart = () => {

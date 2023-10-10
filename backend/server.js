@@ -13,6 +13,7 @@ app.use(cors());
 
 // middleware to parse requests
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // routes
 const productsRoute = require("./routes/productsRoute");
@@ -23,7 +24,7 @@ app.get("/", (req, res) =>
 );
 
 app.use("/api/products", productsRoute);
-app.use("/api/admin/users", usersRoute);
+app.use("/api/users", usersRoute);
 
 app.listen(process.env.PORT, () => {
   configDB();

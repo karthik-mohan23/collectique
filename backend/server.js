@@ -1,5 +1,7 @@
 // dotenv
 require("dotenv").config();
+// cookie-parser
+const cookieParser = require("cookie-parser");
 
 const express = require("express");
 const app = express();
@@ -14,6 +16,9 @@ app.use(cors());
 // middleware to parse requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// to parse cookie from request object
+// allows to access req.cookies
+app.use(cookieParser());
 
 // routes
 const productsRoute = require("./routes/productsRoute");

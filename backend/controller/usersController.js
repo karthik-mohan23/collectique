@@ -63,7 +63,13 @@ const signUpUser = async (req, res) => {
 // @route  POST /api/users/logout
 // @access  Private
 const logoutUser = async (req, res) => {
-  res.send("logout user");
+  //to get rid of JWT cookie
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    expires: new Date(0),
+  });
+
+  res.status(200).json({ message: "Logged out successfully" });
 };
 
 // @desc    Fetch all users

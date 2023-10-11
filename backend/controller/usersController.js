@@ -56,7 +56,33 @@ const loginUser = async (req, res) => {
 // @route  POST /api/users
 // @access  Public
 const signUpUser = async (req, res) => {
-  res.send("signup user");
+  try {
+    const { name, email, password } = req.body;
+
+    // check if user already exists
+    const userExists = await UserModel.findOne({ email });
+
+    // if user already exists
+    if (userExists) {
+      res.status(400).json({ message: "User already exists" });
+    }
+
+    // if user doesn't exist - create new user
+    const newUser = await UserModel.create({
+      name,
+      email,
+      password,
+    });
+
+    res.status(201).json({
+      _id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      isAdmin: newUser.isAdmin,
+    });
+  } catch (error) {
+    res.status(401).json({ message: "Something went wrong." });
+  }
 };
 
 // @desc  Logout user & clear cookie

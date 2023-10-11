@@ -1,6 +1,5 @@
 const UserModel = require("../models/userModel");
-
-const jwt = require("jsonwebtoken");
+const generateToken = require("../utils/generateToken");
 
 // @desc  Authenticate user & get token
 // @route  POST /api/users/login
@@ -15,28 +14,7 @@ const loginUser = async (req, res) => {
     // also check if entered password matches with the one in DB
     if (userExists && (await userExists.matchPassword(password))) {
       // generate token
-      // takes in  object with a payload, secret, duration
-      const token = jwt.sign(
-        { userId: userExists._id },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "1d",
-        }
-      );
-      // set it as HTTP-Only cookie
-      // name,value,options
-      res.cookie("jwt", token, {
-        //client side JS cannot access this - to reduce XSS attacks
-        httpOnly: true,
-        // only send over HTTPS
-        // set to true during production
-        secure: false,
-        // restricts cookies to current site
-        // reducing CSRF risks
-        sameSite: "strict",
-        // duration till it expires(ms)
-        maxAge: 1 * 24 * 60 * 60 * 1000, // 1 day,
-      });
+      generateToken(res, userExists._id);
 
       res.json({
         _id: userExists._id,
@@ -64,7 +42,7 @@ const signUpUser = async (req, res) => {
 
     // if user already exists
     if (userExists) {
-      res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     // if user doesn't exist - create new user
@@ -74,12 +52,20 @@ const signUpUser = async (req, res) => {
       password,
     });
 
-    res.status(201).json({
-      _id: newUser._id,
-      name: newUser.name,
-      email: newUser.email,
-      isAdmin: newUser.isAdmin,
-    });
+    // if new user is saved to DB
+    if (newUser) {
+      // generate token
+      generateToken(res, newUser._id);
+
+      return res.status(201).json({
+        _id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        isAdmin: newUser.isAdmin,
+      });
+    } else {
+      return res.status(401).json({ message: "Invalid user data." });
+    }
   } catch (error) {
     res.status(401).json({ message: "Something went wrong." });
   }

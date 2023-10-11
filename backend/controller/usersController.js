@@ -26,7 +26,7 @@ const loginUser = async (req, res) => {
       // set it as HTTP-Only cookie
       // name,value,options
       res.cookie("jwt", token, {
-        //client sidde JS cannot access this - to reduce XSS attacks
+        //client side JS cannot access this - to reduce XSS attacks
         httpOnly: true,
         // only send over HTTPS
         // set to true during production

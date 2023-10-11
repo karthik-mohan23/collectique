@@ -1,4 +1,6 @@
 const router = require("express").Router();
+// to protect routes
+const { protect, admin } = require("../middlewares/authMiddleware");
 
 const {
   loginUser,
@@ -13,7 +15,7 @@ router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 
 // admin
-router.get("/", getAllUsers);
-router.delete("/:id", deleteUser);
+router.get("/", protect, admin, getAllUsers);
+router.delete("/:id", protect, admin, deleteUser);
 
 module.exports = router;

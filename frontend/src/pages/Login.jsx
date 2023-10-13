@@ -35,6 +35,10 @@ const Login = () => {
       console.log("data send", response.data);
       // set user details to global state
       setUser(response.data);
+      // Convert the object to a JSON string
+      const jsonString = JSON.stringify(response.data);
+      // Store the JSON string in localStorage
+      localStorage.setItem("userDetails", jsonString);
       // reset form field
       setLoginForm({
         email: "",

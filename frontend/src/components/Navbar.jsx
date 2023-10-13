@@ -7,8 +7,9 @@ const Navbar = () => {
   const amountToPay = useSelector(totalPrice);
 
   const { user, setUser } = useAuthContext();
+  console.log(useAuthContext());
 
-  const handleLogout = () => setUser(null);
+  const handleLogout = () => setUser(localStorage.removeItem("userDetails"));
 
   return (
     // <header className="bg-base-100">

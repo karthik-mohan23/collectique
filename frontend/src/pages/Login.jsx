@@ -32,7 +32,6 @@ const Login = () => {
         "http://localhost:5000/api/users/login",
         loginForm
       );
-      console.log("data send", response.data);
       // set user details to global state
       setUser(response.data);
       // Convert the object to a JSON string

@@ -7,7 +7,6 @@ const Navbar = () => {
   const amountToPay = useSelector(totalPrice);
 
   const { user, setUser } = useAuthContext();
-  console.log(useAuthContext());
 
   const handleLogout = () => setUser(localStorage.removeItem("userDetails"));
 

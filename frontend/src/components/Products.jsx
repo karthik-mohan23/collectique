@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useProductsContext } from "../context/allProductsContext";
+import { useProductsContext } from "../context/useProductsContext";
 import Loader from "./Loader";
 import Error from "./Error";
 

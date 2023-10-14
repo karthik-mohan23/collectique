@@ -8,7 +8,9 @@ const Navbar = () => {
 
   const { user, setUser } = useAuthContext();
 
-  const handleLogout = () => setUser(localStorage.removeItem("userDetails"));
+  const handleLogout = () => {
+    setUser(localStorage.removeItem("userDetails"));
+  };
 
   return (
     // <header className="bg-base-100">

@@ -43,23 +43,11 @@ const orderSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    paymentResult: {
-      id: { type: String },
-      status: { type: String },
-      updateTime: { type: String },
-      emailAddress: { type: String },
-    },
     totalPrice: {
       type: Number,
       required: true,
       default: 0.0,
     },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-
     isDelivered: {
       type: Boolean,
       required: true,

@@ -16,7 +16,7 @@ const loginUser = async (req, res) => {
       // generate token
       generateToken(res, userExists._id);
 
-      res.json({
+      return res.json({
         _id: userExists._id,
         name: userExists.name,
         email: userExists.email,
@@ -56,7 +56,6 @@ const signUpUser = async (req, res) => {
     if (newUser) {
       // generate token
       generateToken(res, newUser._id);
-
       return res.status(201).json({
         _id: newUser._id,
         name: newUser.name,
@@ -75,6 +74,7 @@ const signUpUser = async (req, res) => {
 // @route  POST /api/users/logout
 // @access  Private
 const logoutUser = async (req, res) => {
+  console.log(req.cookie);
   //to get rid of JWT cookie
   res.cookie("jwt", "", {
     httpOnly: true,

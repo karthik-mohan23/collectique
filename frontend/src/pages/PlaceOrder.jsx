@@ -6,8 +6,12 @@ import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
 const PlaceOrder = () => {
   const amountToPay = useSelector(totalPrice);
   const { address, city, pincode, state } = useSelector(placeToDeliver);
-
   const { user } = useAuthContext();
+
+  //   to remove order details from local storage
+  const handlePlaceOrder = () => {
+    localStorage.removeItem("orderDetails");
+  };
 
   return (
     <div className="w-[90%] max-w-5xl mx-auto py-16 min-h-[90vh]">
@@ -43,7 +47,10 @@ const PlaceOrder = () => {
         </table>
       </div>
       <div className="mx-auto w-full">
-        <Link to="/confirmation" className="btn btn-secondary flex ">
+        <Link
+          to="/confirmation"
+          className="btn btn-secondary flex "
+          onClick={handlePlaceOrder}>
           Place Order
         </Link>
       </div>

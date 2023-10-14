@@ -17,7 +17,12 @@ import {
   Signup,
   UserManagement,
 } from "./pages";
-import { Footer, Navbar, ProductDetails } from "./components";
+import {
+  Footer,
+  Navbar,
+  ProductDetails,
+  PrivateUserRoutes,
+} from "./components";
 import { AuthContextProvider } from "./context/useAuthContext";
 
 const App = () => {
@@ -30,13 +35,16 @@ const App = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/product-details/:id" element={<ProductDetails />} />
-              <Route path="/cart" element={<Cart />} />
               <Route path="/login" element={<Login />} />
               <Route path="/sign-up" element={<Signup />} />
-              <Route path="/address" element={<ShippingAddressPage />} />
-              <Route path="/payment" element={<PaymentPage />} />
-              <Route path="/place-order" element={<PlaceOrder />} />
-              <Route path="/confirmation" element={<Confirmation />} />
+              <Route path="/cart" element={<Cart />} />
+              {/* Logged in routes */}
+              <Route path="" element={<PrivateUserRoutes />}>
+                <Route path="/address" element={<ShippingAddressPage />} />
+                <Route path="/payment" element={<PaymentPage />} />
+                <Route path="/place-order" element={<PlaceOrder />} />
+                <Route path="/confirmation" element={<Confirmation />} />
+              </Route>
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route
                 path="/admin/user-management"

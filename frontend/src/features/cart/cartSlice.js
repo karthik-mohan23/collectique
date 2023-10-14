@@ -49,6 +49,11 @@ const cartSlice = createSlice({
         localStorage.setItem("orderDetails", JSON.stringify(state));
       }
     },
+    clearCart: (state, action) => {
+      state.cartItems = [];
+      state.shippingAddress = {};
+      state.paymentMethod = "Razorpay";
+    },
   },
 });
 

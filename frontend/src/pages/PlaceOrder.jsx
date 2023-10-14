@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../context/useAuthContext";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
 
 const PlaceOrder = () => {
+  const dispatch = useDispatch();
   const amountToPay = useSelector(totalPrice);
   const { address, city, pincode, state } = useSelector(placeToDeliver);
   const { user } = useAuthContext();
@@ -11,6 +12,7 @@ const PlaceOrder = () => {
   //   to remove order details from local storage
   const handlePlaceOrder = () => {
     localStorage.removeItem("orderDetails");
+    dispatch(clearCart());
   };
 
   return (

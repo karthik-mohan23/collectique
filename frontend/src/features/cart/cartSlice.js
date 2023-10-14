@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  cartItems: [],
-  shippingAddress: {},
-};
+const initialState = localStorage.getItem("orderDetails")
+  ? JSON.parse(localStorage.getItem("orderDetails"))
+  : {
+      cartItems: [],
+      shippingAddress: {},
+      paymentMethod: "Razorpay",
+    };
 
 const cartSlice = createSlice({
   name: "cart",
@@ -21,9 +24,11 @@ const cartSlice = createSlice({
       // if item exists increase quantity
       if (itemExistsInCart) {
         itemAddedToCart.qty = action.payload.qty;
+        localStorage.setItem("orderDetails", JSON.stringify(state));
       } else {
         // add item to cart
         state.cartItems = [...state.cartItems, itemAddedToCart];
+        localStorage.setItem("orderDetails", JSON.stringify(state));
       }
     },
     removeItemsFromCart: (state, action) => {
@@ -33,12 +38,14 @@ const cartSlice = createSlice({
       state.cartItems = state.cartItems.filter(
         (currentItem) => currentItem._id !== itemToBeRemovedId
       );
+      localStorage.setItem("orderDetails", JSON.stringify(state));
     },
     saveShippingAddress: (state, action) => {
       // payload = object
       const address = action.payload;
       if (address) {
         state.shippingAddress = address;
+        localStorage.setItem("orderDetails", JSON.stringify(state));
       }
     },
   },

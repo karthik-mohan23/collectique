@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
-import { Link } from "react-router-dom";
 import { saveShippingAddress } from "../features/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const ShippingAddressPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [addressData, setAddressData] = useState({
@@ -31,8 +31,8 @@ const ShippingAddressPage = () => {
     ) {
       return;
     }
-    console.log(addressData);
     dispatch(saveShippingAddress(addressData));
+    navigate("/payment");
   };
 
   return (

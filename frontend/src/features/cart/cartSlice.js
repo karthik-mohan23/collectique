@@ -15,8 +15,17 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       // payload = object
 
-      const { user, rating, numReviews, reviews, assured, ...item } =
-        action.payload;
+      const {
+        user,
+        rating,
+        numReviews,
+        reviews,
+        assured,
+        category,
+        countInStock,
+        description,
+        ...item
+      } = action.payload;
 
       // check if item exists in cart
       const itemExistsInCartIndex = state.cartItems.findIndex(

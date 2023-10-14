@@ -1,19 +1,28 @@
-import { Link } from "react-router-dom";
-import { useAuthContext } from "../context/useAuthContext";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useAuthContext } from "../context/useAuthContext";
+import { Link } from "react-router-dom";
 import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
+import axios from "axios";
 
 const PlaceOrder = () => {
   const dispatch = useDispatch();
   const amountToPay = useSelector(totalPrice);
   const { address, city, pincode, state } = useSelector(placeToDeliver);
   const { user } = useAuthContext();
+  const orderInfo = useSelector((store) => store.cart);
+  console.log(orderInfo);
 
   //   to remove order details from local storage
-  const handlePlaceOrder = () => {
-    localStorage.removeItem("orderDetails");
+  const handlePlaceOrder = async () => {
+    //   const response = await axios.post("http://localhost:5000/api/orders");
     dispatch(clearCart());
   };
+
+  useEffect(() => {
+    localStorage.removeItem("orderDetails");
+    // handlePlaceOrder;
+  }, [handlePlaceOrder]);
 
   return (
     <div className="w-[90%] max-w-5xl mx-auto py-16 min-h-[90vh]">

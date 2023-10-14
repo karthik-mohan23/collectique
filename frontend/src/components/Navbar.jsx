@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { numberOfItemsInCart, totalPrice } from "../features/cart/cartSlice";
 import { useAuthContext } from "../context/useAuthContext";
+import axios from "axios";
 const Navbar = () => {
   const cartLength = useSelector(numberOfItemsInCart);
   const amountToPay = useSelector(totalPrice);
@@ -9,8 +11,13 @@ const Navbar = () => {
   const { user, setUser } = useAuthContext();
 
   const handleLogout = () => {
+    axios.post("http://localhost:5000/api/users/logout");
     setUser(localStorage.removeItem("userDetails"));
   };
+
+  useEffect(() => {
+    handleLogout;
+  }, [handleLogout]);
 
   return (
     // <header className="bg-base-100">

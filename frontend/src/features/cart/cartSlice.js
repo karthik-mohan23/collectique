@@ -14,22 +14,22 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       // payload = object
-      const itemAddedToCart = action.payload;
+
+      const { user, rating, numReviews, reviews, ...item } = action.payload;
 
       // check if item exists in cart
-      const itemExistsInCart = state.cartItems.find(
-        (currentItem) => currentItem._id === itemAddedToCart._id
+      const itemExistsInCartIndex = state.cartItems.findIndex(
+        (currentItem) => currentItem._id === item._id
       );
 
-      // if item exists increase quantity
-      if (itemExistsInCart) {
-        itemAddedToCart.qty = action.payload.qty;
-        localStorage.setItem("orderDetails", JSON.stringify(state));
+      // If item exists in the cart, update the quantity
+      if (itemExistsInCartIndex !== -1) {
+        state.cartItems[itemExistsInCartIndex].qty = action.payload.qty;
       } else {
         // add item to cart
-        state.cartItems = [...state.cartItems, itemAddedToCart];
-        localStorage.setItem("orderDetails", JSON.stringify(state));
+        state.cartItems = [...state.cartItems, item];
       }
+      localStorage.setItem("orderDetails", JSON.stringify(state));
     },
     removeItemsFromCart: (state, action) => {
       // payload=id

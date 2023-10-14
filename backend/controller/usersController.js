@@ -15,7 +15,9 @@ const loginUser = async (req, res) => {
     if (userExists && (await userExists.matchPassword(password))) {
       // generate token
       generateToken(res, userExists._id);
+      //
 
+      //
       return res.json({
         _id: userExists._id,
         name: userExists.name,

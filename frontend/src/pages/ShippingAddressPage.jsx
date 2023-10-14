@@ -1,17 +1,22 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { saveShippingAddress } from "../features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  placeToDeliver,
+  saveShippingAddress,
+} from "../features/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 const ShippingAddressPage = () => {
+  const location = useSelector(placeToDeliver);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [addressData, setAddressData] = useState({
-    address: "",
-    city: "",
-    pincode: "",
-    state: "",
+    address: location.address || "",
+    city: location.city || "",
+    pincode: location.pincode || "",
+    state: location.state || "",
   });
 
   const handleAddressChange = (e) => {

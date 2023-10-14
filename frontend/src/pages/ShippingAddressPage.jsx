@@ -96,7 +96,9 @@ const ShippingAddressPage = () => {
             />
           </div>
           <div className="form-control mt-4">
-            <button className="btn btn-secondary" onClick={handleAddressSubmit}>
+            <button
+              className="btn btn-secondary "
+              onClick={handleAddressSubmit}>
               Continue
             </button>
           </div>

@@ -4,6 +4,8 @@ import Login from "./Login";
 import Signup from "./Signup";
 import ShippingAddressPage from "./ShippingAddressPage";
 import PaymentPage from "./PaymentPage";
+import PlaceOrder from "./PlaceOrder";
+import Confirmation from "./Confirmation";
 import AdminDashboard from "./admin/AdminDashboard";
 import UserManagement from "./admin/UserManagement";
 import ProductManagement from "./admin/ProductManagement";
@@ -16,6 +18,8 @@ export {
   Signup,
   ShippingAddressPage,
   PaymentPage,
+  PlaceOrder,
+  Confirmation,
   UserManagement,
   ProductManagement,
   OrderRecords,

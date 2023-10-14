@@ -64,3 +64,5 @@ export const numberOfItemsInCart = (store) => store.cart.cartItems.length;
 // calculate price
 export const totalPrice = (store) =>
   store?.cart?.cartItems?.reduce((acc, item) => acc + item.qty * item.price, 0);
+// shipping address
+export const placeToDeliver = (store) => store.cart.shippingAddress;

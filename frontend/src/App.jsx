@@ -6,10 +6,12 @@ import { ProductsProvider } from "./context/useProductsContext";
 import {
   AdminDashboard,
   Cart,
+  Confirmation,
   Home,
   Login,
   OrderRecords,
   PaymentPage,
+  PlaceOrder,
   ProductManagement,
   ShippingAddressPage,
   Signup,
@@ -33,6 +35,8 @@ const App = () => {
               <Route path="/sign-up" element={<Signup />} />
               <Route path="/address" element={<ShippingAddressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
+              <Route path="/place-order" element={<PlaceOrder />} />
+              <Route path="/confirmation" element={<Confirmation />} />
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route
                 path="/admin/user-management"

@@ -17,7 +17,7 @@ const PaymentPage = () => {
           </div>
         </div>
         <div className="form-control">
-          <Link to="/placeorder" className="btn btn-secondary">
+          <Link to="/place-order" className="btn btn-secondary">
             Continue
           </Link>
         </div>

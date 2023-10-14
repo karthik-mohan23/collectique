@@ -23,6 +23,7 @@ app.use(cookieParser());
 // routes
 const productsRoute = require("./routes/productsRoute");
 const usersRoute = require("./routes/usersRoute");
+const orderRoute = require("./routes/orderRoute");
 
 app.get("/", (req, res) =>
   res.send(`server listening on PORT ${process.env.PORT}`)
@@ -30,6 +31,7 @@ app.get("/", (req, res) =>
 
 app.use("/api/products", productsRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/orders", orderRoute);
 
 app.listen(process.env.PORT, () => {
   configDB();

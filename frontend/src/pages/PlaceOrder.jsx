@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../context/useAuthContext";
-import { Link } from "react-router-dom";
+
 import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
 import axios from "axios";
 
@@ -11,18 +10,31 @@ const PlaceOrder = () => {
   const { address, city, pincode, state } = useSelector(placeToDeliver);
   const { user } = useAuthContext();
   const orderInfo = useSelector((store) => store.cart);
-  console.log(orderInfo);
+
+  const allOrderInfo = { ...orderInfo, totalPrice: amountToPay };
+  console.log(allOrderInfo);
 
   //   to remove order details from local storage
   const handlePlaceOrder = async () => {
-    //   const response = await axios.post("http://localhost:5000/api/orders");
-    dispatch(clearCart());
+    try {
+      console.log("before post");
+      const response = await axios.post(
+        "http://localhost:5000/api/orders",
+        allOrderInfo,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("after post");
+      console.log(response);
+      localStorage.removeItem("orderDetails");
+      dispatch(clearCart());
+    } catch (error) {
+      console.error("Error placing the order:", error);
+    }
   };
-
-  useEffect(() => {
-    localStorage.removeItem("orderDetails");
-    // handlePlaceOrder;
-  }, [handlePlaceOrder]);
 
   return (
     <div className="w-[90%] max-w-5xl mx-auto py-16 min-h-[90vh]">
@@ -58,12 +70,11 @@ const PlaceOrder = () => {
         </table>
       </div>
       <div className="mx-auto w-full">
-        <Link
-          to="/confirmation"
-          className="btn btn-secondary flex "
-          onClick={handlePlaceOrder}>
+        <button
+          className="btn btn-secondary  "
+          onClick={() => handlePlaceOrder()}>
           Place Order
-        </Link>
+        </button>
       </div>
     </div>
   );

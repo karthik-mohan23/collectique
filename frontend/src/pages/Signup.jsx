@@ -34,7 +34,6 @@ const Signup = () => {
         "http://localhost:5000/api/users",
         signupForm
       );
-      console.log(response);
       // set user details to global state
       setUser(response.data);
       // Convert the object to a JSON string

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../context/useAuthContext";
-
 import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
 import axios from "axios";
 
@@ -9,28 +8,36 @@ const PlaceOrder = () => {
   const amountToPay = useSelector(totalPrice);
   const { address, city, pincode, state } = useSelector(placeToDeliver);
   const { user } = useAuthContext();
-  const orderInfo = useSelector((store) => store.cart);
+  const cartSliceDetails = useSelector((store) => store.cart);
 
-  const allOrderInfo = { ...orderInfo, totalPrice: amountToPay };
-  console.log(allOrderInfo);
+  const orderInfo = { ...cartSliceDetails, totalPrice: amountToPay };
+  console.log(orderInfo);
 
-  //   to remove order details from local storage
+  // const handlePlaceOrder = async () => {
+  //   try {
+  //     console.log("before post");
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/orders",
+  //       orderInfo
+  //     );
+  //     console.log("after post");
+  //     console.log(response);
+  //     localStorage.removeItem("orderDetails");
+  //     dispatch(clearCart());
+  //   } catch (error) {
+  //     console.error("Error placing the order:", error);
+  //   }
+  // };
   const handlePlaceOrder = async () => {
     try {
       console.log("before post");
-      const response = await axios.post(
-        "http://localhost:5000/api/orders",
-        allOrderInfo,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post("http://localhost:5000/api/orders", {
+        message: "hi",
+      });
       console.log("after post");
       console.log(response);
-      localStorage.removeItem("orderDetails");
-      dispatch(clearCart());
+      // localStorage.removeItem("orderDetails");
+      // dispatch(clearCart());
     } catch (error) {
       console.error("Error placing the order:", error);
     }
@@ -70,9 +77,7 @@ const PlaceOrder = () => {
         </table>
       </div>
       <div className="mx-auto w-full">
-        <button
-          className="btn btn-secondary  "
-          onClick={() => handlePlaceOrder()}>
+        <button className="btn btn-secondary  " onClick={handlePlaceOrder}>
           Place Order
         </button>
       </div>

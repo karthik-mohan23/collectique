@@ -8,7 +8,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
       ref: "User",
     },
-    orderItems: [
+    cartItems: [
       {
         name: { type: String, required: true },
         qty: { type: Number, required: true },
@@ -17,11 +17,6 @@ const orderSchema = new mongoose.Schema(
         seller: {
           type: String,
           required: true,
-        },
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: "Product",
         },
       },
     ],

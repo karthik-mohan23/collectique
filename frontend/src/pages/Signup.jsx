@@ -30,10 +30,7 @@ const Signup = () => {
     }
     try {
       console.log(signupForm);
-      const response = await axios.post(
-        "http://localhost:5000/api/users",
-        signupForm
-      );
+      const response = await axios.post("/api/users", signupForm);
       // set user details to global state
       setUser(response.data);
       // Convert the object to a JSON string

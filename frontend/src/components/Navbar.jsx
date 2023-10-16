@@ -11,7 +11,7 @@ const Navbar = () => {
   const { user, setUser } = useAuthContext();
 
   const handleLogout = () => {
-    axios.post("http://localhost:5000/api/users/logout");
+    axios.post("/api/users/logout");
     setUser(localStorage.removeItem("userDetails"));
   };
 

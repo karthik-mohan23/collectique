@@ -14,9 +14,7 @@ const useFetchProductDetails = (productId) => {
   const fetchProductDetails = async () => {
     dispatch({ type: "FETCH_LOADING" });
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/products/${productId}`
-      );
+      const response = await axios.get(`/api/products/${productId}`);
       dispatch({ type: "FETCH_SUCCESS", payload: response.data });
     } catch (error) {
       dispatch({ type: "FETCH_ERROR" });

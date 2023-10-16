@@ -10,8 +10,8 @@ const app = express();
 const configDB = require("./config/db");
 
 // cors
-const cors = require("cors");
-app.use(cors());
+// const cors = require("cors");
+// app.use(cors());
 
 // middleware to parse requests
 app.use(express.json());

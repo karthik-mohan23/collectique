@@ -4,11 +4,11 @@ const UserModel = require("../models/userModel");
 
 //protect routes for users
 const protect = async (req, res, next) => {
-  try {
-    //Read JWT from cookie
-    let token = req.cookies.jwt;
-
-    if (token) {
+  //Read JWT from cookie
+  let token = req.cookies.jwt;
+  console.log(token);
+  if (token) {
+    try {
       // decode userId from token
       const { userId } = jwt.verify(token, process.env.JWT_SECRET);
       // find user from Users collection without password
@@ -16,9 +16,11 @@ const protect = async (req, res, next) => {
       //set this user object to req object on all routes
       req.user = await UserModel.findById(userId).select("-password");
       next();
+    } catch (error) {
+      res.status(401).json({ message: "Not authorized" });
     }
-  } catch (error) {
-    res.status(401).json({ message: "Not authorized" });
+  } else {
+    res.status(400).json({ message: "Not authorized" });
   }
 };
 

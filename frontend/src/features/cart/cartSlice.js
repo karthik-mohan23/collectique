@@ -62,6 +62,7 @@ const cartSlice = createSlice({
       state.cartItems = [];
       state.shippingAddress = {};
       state.paymentMethod = "Razorpay";
+      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });
@@ -69,7 +70,12 @@ const cartSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = cartSlice;
 // Extract and export each action creator by name
-export const { addToCart, removeItemsFromCart, saveShippingAddress } = actions;
+export const {
+  addToCart,
+  removeItemsFromCart,
+  saveShippingAddress,
+  clearCart,
+} = actions;
 // Export the reducer, either as a default or named export
 export default reducer;
 

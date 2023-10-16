@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useAuthContext } from "../context/useAuthContext";
-import { placeToDeliver, totalPrice } from "../features/cart/cartSlice";
+import {
+  clearCart,
+  placeToDeliver,
+  totalPrice,
+} from "../features/cart/cartSlice";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
   const dispatch = useDispatch();
@@ -9,35 +14,19 @@ const PlaceOrder = () => {
   const { address, city, pincode, state } = useSelector(placeToDeliver);
   const { user } = useAuthContext();
   const cartSliceDetails = useSelector((store) => store.cart);
-
   const orderInfo = { ...cartSliceDetails, totalPrice: amountToPay };
-  console.log(orderInfo);
+  const navigate = useNavigate();
 
-  // const handlePlaceOrder = async () => {
-  //   try {
-  //     console.log("before post");
-  //     const response = await axios.post(
-  //       "http://localhost:5000/api/orders",
-  //       orderInfo
-  //     );
-  //     console.log("after post");
-  //     console.log(response);
-  //     localStorage.removeItem("orderDetails");
-  //     dispatch(clearCart());
-  //   } catch (error) {
-  //     console.error("Error placing the order:", error);
-  //   }
-  // };
   const handlePlaceOrder = async () => {
     try {
-      console.log("before post");
-      const response = await axios.post("http://localhost:5000/api/orders", {
-        message: "hi",
-      });
-      console.log("after post");
-      console.log(response);
-      // localStorage.removeItem("orderDetails");
-      // dispatch(clearCart());
+      const response = await axios.post("/api/orders", orderInfo);
+      if (response.status === 201) {
+        localStorage.removeItem("orderDetails");
+        dispatch(clearCart());
+        navigate("/confirmation");
+      } else {
+        console.log("error placing order");
+      }
     } catch (error) {
       console.error("Error placing the order:", error);
     }

@@ -28,10 +28,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/login",
-        loginForm
-      );
+      const response = await axios.post("/api/users/login", loginForm);
       // set user details to global state
       setUser(response.data);
       // Convert the object to a JSON string

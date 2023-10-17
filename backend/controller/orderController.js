@@ -7,7 +7,7 @@ const placeOrder = async (req, res) => {
     const userId = req.user._id;
 
     // Get order details from the request body
-    console.log(req.body);
+
     const { cartItems, shippingAddress, paymentMethod, totalPrice } = req.body;
     console.log(cartItems);
 
@@ -34,7 +34,6 @@ const placeOrder = async (req, res) => {
 const getMyOrders = async (req, res) => {
   try {
     const userId = req.user._id;
-    console.log(userId);
     const myOrders = await OrderModel.find({ user: userId });
     if (myOrders) {
       res.status(200).json(myOrders);

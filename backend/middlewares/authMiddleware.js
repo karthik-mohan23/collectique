@@ -6,7 +6,7 @@ const UserModel = require("../models/userModel");
 const protect = async (req, res, next) => {
   //Read JWT from cookie
   let token = req.cookies.jwt;
-  console.log(token);
+
   if (token) {
     try {
       // decode userId from token

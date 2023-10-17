@@ -78,6 +78,31 @@ const Navbar = () => {
           <Link to="/" className="btn btn-ghost normal-case text-xl">
             Collectique
           </Link>
+          {/* Admin Dashboard */}
+          {user?.isAdmin && (
+            <div className="dropdown">
+              <label tabIndex={0} className="btn m-1">
+                Admin
+              </label>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <Link to="/admin-dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/admin/user-management">Users</Link>
+                </li>
+
+                <li>
+                  <Link to="/admin/order-records">Orders</Link>
+                </li>
+                <li>
+                  <Link to="/admin/product-management">Products</Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
         <div className="navbar-center">
           <div className="form-control">
@@ -100,9 +125,20 @@ const Navbar = () => {
               className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
               About
             </Link>
+            {/* My orders */}
+            {!user?.isAdmin && user?._id ? (
+              <Link
+                to="/my-orders"
+                className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
+                Order
+              </Link>
+            ) : null}
           </div>
-          {user?.name ? (
-            <a to="#" className=" normal-case text-[1rem] mx-3">
+          {/* Login */}
+          {user?.name && !user?.isAdmin ? (
+            <a
+              to="#"
+              className=" normal-case text-[1rem] text-secondary font-medium mx-3">
               {user?.name}
             </a>
           ) : (
@@ -112,6 +148,7 @@ const Navbar = () => {
               Login
             </Link>
           )}
+          {/* Logout */}
           {user?.name && (
             <a
               onClick={handleLogout}
@@ -119,6 +156,7 @@ const Navbar = () => {
               Logout
             </a>
           )}
+          {/* Cart */}
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="indicator">

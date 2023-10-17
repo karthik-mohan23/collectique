@@ -5,7 +5,6 @@ const placeOrder = async (req, res) => {
   try {
     // Get userId from the authenticated user
     const userId = req.user._id;
-    console.log(userId, "user");
 
     // Get order details from the request body
     console.log(req.body);
@@ -32,6 +31,21 @@ const placeOrder = async (req, res) => {
   }
 };
 
+const getMyOrders = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    console.log(userId);
+    const myOrders = await OrderModel.find({ user: userId });
+    if (myOrders) {
+      res.status(200).json(myOrders);
+    } else {
+      res.status(401).json({ message: "No orders found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: "Something went wrong." });
+  }
+};
+
 const getAllOrders = async (req, res) => {
   try {
     const allOrders = await OrderModel.find({});
@@ -43,4 +57,4 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-module.exports = { placeOrder, getAllOrders };
+module.exports = { placeOrder, getAllOrders, getMyOrders };

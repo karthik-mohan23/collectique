@@ -9,6 +9,7 @@ import {
   Confirmation,
   Home,
   Login,
+  MyOrders,
   OrderRecords,
   PaymentPage,
   PlaceOrder,
@@ -44,7 +45,9 @@ const App = () => {
                 <Route path="/payment" element={<PaymentPage />} />
                 <Route path="/place-order" element={<PlaceOrder />} />
                 <Route path="/confirmation" element={<Confirmation />} />
+                <Route path="/my-orders" element={<MyOrders />} />
               </Route>
+              {/* Admin */}
               <Route path="/admin-dashboard" element={<AdminDashboard />} />
               <Route
                 path="/admin/user-management"

@@ -6,6 +6,7 @@ import ShippingAddressPage from "./ShippingAddressPage";
 import PaymentPage from "./PaymentPage";
 import PlaceOrder from "./PlaceOrder";
 import Confirmation from "./Confirmation";
+import MyOrders from "./MyOrders";
 import AdminDashboard from "./admin/AdminDashboard";
 import UserManagement from "./admin/UserManagement";
 import ProductManagement from "./admin/ProductManagement";
@@ -24,4 +25,5 @@ export {
   ProductManagement,
   OrderRecords,
   AdminDashboard,
+  MyOrders,
 };

@@ -47,7 +47,7 @@ const getMyOrders = async (req, res) => {
 
 const getAllOrders = async (req, res) => {
   try {
-    const allOrders = await OrderModel.find({});
+    const allOrders = await OrderModel.find({}).populate("user", "name");
     if (allOrders) {
       res.json(allOrders);
     } else {

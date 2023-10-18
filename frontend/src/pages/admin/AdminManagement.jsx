@@ -27,7 +27,7 @@ const AdminManagement = () => {
           <table className="table">
             {/* head */}
             <thead>
-              <tr className="bg-base-200">
+              <tr className="bg-base-200 ">
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>

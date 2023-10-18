@@ -86,12 +86,15 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                className="dropdown-content z-[10] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link to="/admin/admin-dashboard">Dashboard</Link>
                 </li>
                 <li>
-                  <Link to="/admin/user-management">Users</Link>
+                  <Link to="/admin/active-users">Active users</Link>
+                </li>
+                <li>
+                  <Link to="/admin/admin-users">Admin users</Link>
                 </li>
 
                 <li>

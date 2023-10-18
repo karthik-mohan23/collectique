@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Error, Loader } from "../../components";
 import { useAppOrdersContext } from "../../context/useAppOrdersContext";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
@@ -30,14 +31,17 @@ const AdminDashboard = () => {
       <div className="w-[90%] max-w-2xl mx-auto grid grid-cols-1 gap-4 md:grid-cols-2 pt-40 ">
         {/* users */}
         <div className=" h-32 bg-yellow-300  text-black text-2xl flex justify-center items-center hover:bg-yellow-500 duration-300 hover:cursor-pointer">
-          <h3>
-            {activeUsers.length > 1
-              ? `${activeUsers.length} Active users`
-              : `${activeUsers.length} Active user`}
-          </h3>
+          <Link to="/admin/active -users">
+            <h3>
+              {activeUsers.length > 1
+                ? `${activeUsers.length} Active users`
+                : `${activeUsers.length} Active user`}
+            </h3>
+          </Link>
         </div>
         {/* Admin users */}
-        <div className=" h-32 bg-violet-500  text-black text-2xl flex justify-center items-center hover:bg-violet-300 duration-300 hover:cursor-pointer">
+        <div className=" h-32 bg-violet-400  text-black text-2xl flex justify-center items-center hover:bg-violet-300 duration-300 hover:cursor-pointer">
+          <Link></Link>
           <h3>
             {activeUsers.length > 1
               ? `${adminUsers.length} Admin users`
@@ -46,6 +50,7 @@ const AdminDashboard = () => {
         </div>
         {/* orders */}
         <div className="h-32 bg-pink-500  text-black text-2xl flex justify-center items-center hover:bg-pink-300 duration-300 hover:cursor-pointer">
+          <Link></Link>
           <h3>
             {pendingOrders.length === 0
               ? `All orders delivered`
@@ -56,6 +61,7 @@ const AdminDashboard = () => {
         </div>
         {/* products */}
         <div className="h-32 bg-green-400  text-black text-2xl flex justify-center items-center hover:bg-green-300 duration-300 hover:cursor-pointer">
+          <Link></Link>
           <h3>Products</h3>
         </div>
       </div>

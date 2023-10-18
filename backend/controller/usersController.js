@@ -92,7 +92,7 @@ const logoutUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
   console.log(req);
   try {
-    const allUsers = await UserModel.find({});
+    const allUsers = await UserModel.find({}).select("-password");
     if (allUsers) {
       res.status(200).json(allUsers);
     } else {

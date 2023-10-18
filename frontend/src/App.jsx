@@ -63,7 +63,7 @@ const App = () => {
                     element={<AdminDashboard />}
                   />
                   <Route
-                    path="/admin/user-management"
+                    path="/admin/active -users"
                     element={<UserManagement />}
                   />
                   <Route

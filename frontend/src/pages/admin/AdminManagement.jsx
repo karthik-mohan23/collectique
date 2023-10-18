@@ -10,7 +10,7 @@ const AdminManagement = () => {
   if (appUsersError) {
     return <Error />;
   }
-  const adminUsers = appUsers?.filter((user) => !user.isAdmin);
+  const adminUsers = appUsers?.filter((user) => user.isAdmin);
 
   if (adminUsers.length === 0) {
     return (

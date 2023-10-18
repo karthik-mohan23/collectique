@@ -50,6 +50,8 @@ const getAllOrders = async (req, res) => {
     const allOrders = await OrderModel.find({});
     if (allOrders) {
       res.json(allOrders);
+    } else {
+      res.status(400).json({ message: "No orders found" });
     }
   } catch (error) {
     res.status(400).json({ message: "Oops, something went wrong." });

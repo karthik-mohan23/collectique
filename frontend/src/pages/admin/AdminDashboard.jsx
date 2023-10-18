@@ -1,4 +1,5 @@
 import { Error, Loader } from "../../components";
+import { useAppOrdersContext } from "../../context/useAppOrdersContext";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 
 const AdminDashboard = () => {
@@ -12,7 +13,18 @@ const AdminDashboard = () => {
   }
   const activeUsers = appUsers?.filter((user) => !user.isAdmin);
   const adminUsers = appUsers?.filter((user) => user.isAdmin);
+  // Orders
+  const { appOrdersLoading, appOrdersError, appOrders } = useAppOrdersContext();
+  if (appOrdersLoading) {
+    return <Loader />;
+  }
+  if (appOrdersError) {
+    return <Error />;
+  }
 
+  console.log(appOrders);
+  const pendingOrders = appOrders?.filter((order) => !order.isDelivered);
+  console.log(pendingOrders.length);
   return (
     <section className="min-h-screen ">
       <div className="w-[90%] max-w-2xl mx-auto grid grid-cols-1 gap-4 md:grid-cols-2 pt-40 ">
@@ -34,7 +46,13 @@ const AdminDashboard = () => {
         </div>
         {/* orders */}
         <div className="h-32 bg-pink-500  text-black text-2xl flex justify-center items-center hover:bg-pink-300 duration-300 hover:cursor-pointer">
-          <h3>Orders</h3>
+          <h3>
+            {pendingOrders.length === 0
+              ? `All orders delivered`
+              : pendingOrders.length === 1
+              ? `${pendingOrders.length} order pending`
+              : `${pendingOrders.length} orders pending`}
+          </h3>
         </div>
         {/* products */}
         <div className="h-32 bg-green-400  text-black text-2xl flex justify-center items-center hover:bg-green-300 duration-300 hover:cursor-pointer">

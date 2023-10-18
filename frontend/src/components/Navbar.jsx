@@ -88,7 +88,7 @@ const Navbar = () => {
                 tabIndex={0}
                 className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
-                  <Link to="/admin-dashboard">Dashboard</Link>
+                  <Link to="/admin/admin-dashboard">Dashboard</Link>
                 </li>
                 <li>
                   <Link to="/admin/user-management">Users</Link>
@@ -135,7 +135,7 @@ const Navbar = () => {
             ) : null}
           </div>
           {/* Login */}
-          {user?.name && !user?.isAdmin ? (
+          {user?.name ? (
             <a
               to="#"
               className=" normal-case text-[1rem] text-secondary font-medium mx-3">

@@ -90,9 +90,14 @@ const logoutUser = async (req, res) => {
 // @route   GET /api/users
 // @access  Private - Admin
 const getAllUsers = async (req, res) => {
+  console.log(req);
   try {
     const allUsers = await UserModel.find({});
-    res.status(200).json(allUsers);
+    if (allUsers) {
+      res.status(200).json(allUsers);
+    } else {
+      res.json({ message: "no users found" });
+    }
   } catch (error) {
     res.json({ message: "Something went wrong" });
   }

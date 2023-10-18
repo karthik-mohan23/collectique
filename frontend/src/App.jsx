@@ -5,6 +5,7 @@ import { ProductsProvider } from "./context/useProductsContext";
 
 import {
   AdminDashboard,
+  AdminManagement,
   Cart,
   Confirmation,
   Home,
@@ -63,8 +64,12 @@ const App = () => {
                     element={<AdminDashboard />}
                   />
                   <Route
-                    path="/admin/active -users"
+                    path="/admin/active-users"
                     element={<UserManagement />}
+                  />
+                  <Route
+                    path="/admin/admin-users"
+                    element={<AdminManagement />}
                   />
                   <Route
                     path="/admin/order-records"

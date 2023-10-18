@@ -2,8 +2,7 @@ import { Error, Loader } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 import { AiFillDelete } from "react-icons/ai";
 
-const UserManagement = () => {
-  // Users
+const AdminManagement = () => {
   const { appUsersLoading, appUsersError, appUsers } = useAppUsersContext();
   if (appUsersLoading) {
     return <Loader />;
@@ -11,12 +10,12 @@ const UserManagement = () => {
   if (appUsersError) {
     return <Error />;
   }
-  const activeUsers = appUsers?.filter((user) => !user.isAdmin);
+  const adminUsers = appUsers?.filter((user) => !user.isAdmin);
 
-  if (activeUsers.length === 0) {
+  if (adminUsers.length === 0) {
     return (
       <div className="w-[90%] max-w-5xl mx-auto grid place-content-center min-h-[80vh]">
-        <h2 className="text-4xl">No active users</h2>
+        <h2 className="text-4xl">No Admin user</h2>
       </div>
     );
   }
@@ -36,7 +35,7 @@ const UserManagement = () => {
               </tr>
             </thead>
             <tbody>
-              {activeUsers.map((user, index) => {
+              {adminUsers.map((user, index) => {
                 const { name, email, _id } = user;
                 return (
                   <tr key={_id}>
@@ -59,4 +58,4 @@ const UserManagement = () => {
     </section>
   );
 };
-export default UserManagement;
+export default AdminManagement;

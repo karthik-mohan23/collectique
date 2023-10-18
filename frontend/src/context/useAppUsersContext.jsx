@@ -5,8 +5,8 @@ import axios from "axios";
 const AppUsersContext = createContext();
 
 const initialState = {
-  loading: false,
-  error: false,
+  appUsersLoading: false,
+  appUsersError: false,
   appUsers: [],
 };
 

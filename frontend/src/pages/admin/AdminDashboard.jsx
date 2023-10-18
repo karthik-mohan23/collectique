@@ -2,11 +2,12 @@ import { Error, Loader } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 
 const AdminDashboard = () => {
-  const { loading, error, appUsers } = useAppUsersContext();
-  if (loading) {
+  // Users
+  const { appUsersLoading, appUsersError, appUsers } = useAppUsersContext();
+  if (appUsersLoading) {
     return <Loader />;
   }
-  if (error) {
+  if (appUsersError) {
     return <Error />;
   }
   const activeUsers = appUsers?.filter((user) => !user.isAdmin);

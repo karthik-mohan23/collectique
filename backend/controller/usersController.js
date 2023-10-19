@@ -76,7 +76,6 @@ const signUpUser = async (req, res) => {
 // @route  POST /api/users/logout
 // @access  Private
 const logoutUser = async (req, res) => {
-  console.log(req.cookie);
   //to get rid of JWT cookie
   res.cookie("jwt", "", {
     httpOnly: true,

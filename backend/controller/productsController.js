@@ -5,7 +5,7 @@ const productsModel = require("../models/productModel");
 // @access  Public
 const getAllProducts = async (req, res, next) => {
   try {
-    const allProducts = await productsModel.find({});
+    const allProducts = await productsModel.find({}).populate("user", "name");
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);

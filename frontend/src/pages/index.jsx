@@ -11,6 +11,7 @@ import AdminDashboard from "./admin/AdminDashboard";
 import UserManagement from "./admin/UserManagement";
 import AdminManagement from "./admin/AdminManagement";
 import ProductManagement from "./admin/ProductManagement";
+import AppProductDetails from "./admin/AppProductDetails";
 import OrderRecords from "./admin/OrderRecords";
 
 export {
@@ -25,6 +26,7 @@ export {
   UserManagement,
   AdminManagement,
   ProductManagement,
+  AppProductDetails,
   OrderRecords,
   AdminDashboard,
   MyOrders,

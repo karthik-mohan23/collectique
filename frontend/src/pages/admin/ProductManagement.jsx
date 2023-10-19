@@ -1,7 +1,8 @@
-import { AiFillDelete } from "react-icons/ai";
 import { Error, Loader } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
 const ProductManagement = () => {
   const { loading, error, products } = useProductsContext();
@@ -39,6 +40,7 @@ const ProductManagement = () => {
                 <th>Created By</th>
                 <th>Date Modified</th>
                 <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -47,12 +49,20 @@ const ProductManagement = () => {
                 return (
                   <tr key={_id}>
                     <th>{index + 1}</th>
+                    <td className="hover:text-secondary-content duration-300">
+                      <Link to={`${_id}`}>{name}</Link>
+                    </td>
 
-                    <td>{name}</td>
                     <td>{category}</td>
                     <td>₹{price}</td>
                     <td>{user.name}</td>
                     <td>{new Date(updatedAt).toString()}</td>
+                    <td>
+                      <AiFillEdit
+                        size={16}
+                        className="cursor-pointer hover:text-blue-500 duration-300"
+                      />
+                    </td>
                     <td>
                       <AiFillDelete
                         size={16}

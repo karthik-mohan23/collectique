@@ -22,12 +22,17 @@ const ProductManagement = () => {
   }, [handleModel]);
 
   const handleDelete = () => {
+    console.log("clicked");
     window.location.reload();
   };
 
   return (
     <section className="">
       <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-20">
+        <div className="flex justify-center">
+          <button className="btn btn-primary mb-20">Add new product</button>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}
@@ -69,13 +74,14 @@ const ProductManagement = () => {
                         className="cursor-pointer hover:text-red-500 duration-300"
                         onClick={handleModel}
                       />
+                      {/* modal */}
                       <dialog id="my_modal_2" className="modal">
                         <div className="modal-box">
                           <h3 className="font-bold text-lg">
                             Delete this product?
                           </h3>
                           <p className="py-4">
-                            Press Confirm to delete this product
+                            Press Confirm to delete this product?
                           </p>
                           <button
                             className="btn btn-outline btn-error"
@@ -87,6 +93,7 @@ const ProductManagement = () => {
                           <button>Close</button>
                         </form>
                       </dialog>
+                      {/* end of modal */}
                     </td>
                   </tr>
                 );

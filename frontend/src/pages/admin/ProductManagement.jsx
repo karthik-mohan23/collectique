@@ -1,5 +1,7 @@
+import { AiFillDelete } from "react-icons/ai";
 import { Error, Loader } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
+import { useEffect } from "react";
 
 const ProductManagement = () => {
   const { loading, error, products } = useProductsContext();
@@ -11,7 +13,16 @@ const ProductManagement = () => {
     return <Error />;
   }
 
-  console.log(products);
+  const handleModel = () => {
+    document.getElementById("my_modal_2").showModal();
+  };
+  useEffect(() => {
+    handleModel;
+  }, [handleModel]);
+
+  const handleDelete = () => {
+    window.location.reload();
+  };
 
   return (
     <section className="">
@@ -27,6 +38,7 @@ const ProductManagement = () => {
                 <th>Price</th>
                 <th>Created By</th>
                 <th>Date Modified</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -38,9 +50,34 @@ const ProductManagement = () => {
 
                     <td>{name}</td>
                     <td>{category}</td>
-                    <td>{price}</td>
+                    <td>₹{price}</td>
                     <td>{user.name}</td>
                     <td>{new Date(updatedAt).toString()}</td>
+                    <td>
+                      <AiFillDelete
+                        size={16}
+                        className="cursor-pointer hover:text-red-500 duration-300"
+                        onClick={handleModel}
+                      />
+                      <dialog id="my_modal_2" className="modal">
+                        <div className="modal-box">
+                          <h3 className="font-bold text-lg">
+                            Delete this product?
+                          </h3>
+                          <p className="py-4">
+                            Press Confirm to delete this product
+                          </p>
+                          <button
+                            className="btn btn-outline btn-error"
+                            onClick={handleDelete}>
+                            Confirm
+                          </button>
+                        </div>
+                        <form method="dialog" className="modal-backdrop">
+                          <button>Close</button>
+                        </form>
+                      </dialog>
+                    </td>
                   </tr>
                 );
               })}

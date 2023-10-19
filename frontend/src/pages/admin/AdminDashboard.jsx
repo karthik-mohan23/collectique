@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Error, Loader } from "../../components";
 import { useAppOrdersContext } from "../../context/useAppOrdersContext";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
+// products
+import { useProductsContext } from "../../context/useProductsContext";
 
 const AdminDashboard = () => {
   // Users
@@ -23,6 +25,19 @@ const AdminDashboard = () => {
     return <Error />;
   }
   const pendingOrders = appOrders?.filter((order) => !order.isDelivered);
+  // products
+  const {
+    loading: productsLoading,
+    error: productsError,
+    products: allProducts,
+  } = useProductsContext();
+
+  if (productsLoading) {
+    return <Loader />;
+  }
+  if (productsError) {
+    return <Error />;
+  }
 
   return (
     <section className="min-h-screen ">
@@ -59,7 +74,11 @@ const AdminDashboard = () => {
         {/* products */}
         <Link to="/admin/product-management">
           <div className="h-32 bg-green-400  text-black text-2xl flex justify-center items-center hover:bg-green-300 duration-300 hover:cursor-pointer">
-            Products
+            {allProducts.length === 0
+              ? `No products`
+              : allProducts.length === 1
+              ? `${allProducts.length} product`
+              : `${allProducts.length} products`}
           </div>
         </Link>
       </div>

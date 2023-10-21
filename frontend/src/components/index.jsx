@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import BannerCarousel from "./BannerCarousel";
-import Products from "./Products";
+import ProductCards from "./ProductCards";
 import ProductDetails from "./ProductDetails";
 import Loader from "./Loader";
 import Error from "./Error";
@@ -14,7 +14,7 @@ import AdminRoute from "./AdminRoute";
 export {
   Navbar,
   BannerCarousel,
-  Products,
+  ProductCards,
   ProductDetails,
   Loader,
   Error,

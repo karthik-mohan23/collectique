@@ -3,7 +3,7 @@ import { useProductsContext } from "../context/useProductsContext";
 import Loader from "./Loader";
 import Error from "./Error";
 
-const Products = () => {
+const ProductCards = () => {
   const { loading, error, products } = useProductsContext();
 
   if (loading) {
@@ -58,7 +58,6 @@ const Products = () => {
                     type="radio"
                     name="rating-2"
                     className="mask mask-star-2 bg-orange-400"
-                    checked
                   />
                   <input
                     type="radio"
@@ -67,9 +66,11 @@ const Products = () => {
                   />
                 </div>
 
-                <h2 className=" py-2 opacity-75">{name}</h2>
+                <h2 className=" py-2 opacity-75 tracking-wide">{name}</h2>
 
-                <p className=" font-semibold text-xl">₹ {price}</p>
+                <p className=" font-semibold text-xl tracking-wide">
+                  ₹ {price}
+                </p>
               </div>
             </div>
           </Link>
@@ -78,4 +79,4 @@ const Products = () => {
     </div>
   );
 };
-export default Products;
+export default ProductCards;

@@ -13,7 +13,7 @@ const BannerCarousel = () => {
     <div className="carousel rounded-box w-96 mt-16 lg:mt-0">
       {carousalImages.map((url) => {
         return (
-          <div className="carousel-item w-1/2">
+          <div className="carousel-item w-1/2" key={url}>
             <img src={url} className="w-full object-cover" />
           </div>
         );

@@ -75,7 +75,7 @@ const Navbar = () => {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link to="/products">Products</Link>
               </li>
               <li>
                 <Link to="/cart">Cart</Link>
@@ -152,9 +152,9 @@ const Navbar = () => {
               Home
             </Link>
             <Link
-              to="/about"
+              to="/products"
               className="cursor-pointer hover:text-accent-focus normal-case font-semibold text-[1rem] hidden md:inline-block">
-              About
+              Products
             </Link>
             {/* My orders */}
             {!user?.isAdmin && user?._id ? (

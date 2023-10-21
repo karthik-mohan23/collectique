@@ -1,4 +1,5 @@
 import Home from "./Home";
+import Products from "./Products";
 import Cart from "./Cart";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -18,6 +19,7 @@ import UpdateProduct from "./admin/UpdateProduct";
 
 export {
   Home,
+  Products,
   Cart,
   Login,
   Signup,

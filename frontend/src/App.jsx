@@ -17,6 +17,7 @@ import {
   PaymentPage,
   PlaceOrder,
   ProductManagement,
+  Products,
   ShippingAddressPage,
   Signup,
   UpdateProduct,
@@ -46,6 +47,7 @@ const App = () => {
                 <Navbar />
                 <Routes>
                   <Route path="/" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
                   <Route
                     path="/product-details/:id"
                     element={<ProductDetails />}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BannerCarousel, Products } from "../components";
+import { BannerCarousel } from "../components";
 
 const Home = () => {
   return (
@@ -25,7 +25,6 @@ const Home = () => {
           {/* Carousal */}
           <BannerCarousel />
         </div>
-        <Products />
       </div>
     </section>
   );

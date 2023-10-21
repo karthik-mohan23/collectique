@@ -32,7 +32,7 @@ const getSingleProduct = async (req, res, next) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = async (req, res) => {
-  const { newProduct } = req.body;
+  const { productData: newProduct } = req.body;
 
   if (
     !newProduct.name ||

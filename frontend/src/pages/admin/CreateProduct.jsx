@@ -119,7 +119,7 @@ const CreateProduct = () => {
             <button
               className="btn btn-secondary "
               onClick={handleProductDataSubmit}>
-              Continue
+              Create Product
             </button>
           </div>
         </form>

@@ -9,6 +9,7 @@ import {
   AppProductDetails,
   Cart,
   Confirmation,
+  CreateProduct,
   Home,
   Login,
   MyOrders,
@@ -18,6 +19,7 @@ import {
   ProductManagement,
   ShippingAddressPage,
   Signup,
+  UpdateProduct,
   UserManagement,
 } from "./pages";
 import {
@@ -86,12 +88,12 @@ const App = () => {
                       element={<AppProductDetails />}
                     />
                     <Route
-                      path="/create-product"
-                      element={<AppProductDetails />}
+                      path="/admin/product-management/create-product"
+                      element={<CreateProduct />}
                     />
                     <Route
-                      path="/update-product"
-                      element={<AppProductDetails />}
+                      path="/admin/product-management/update-product"
+                      element={<UpdateProduct />}
                     />
                   </Route>
                 </Routes>

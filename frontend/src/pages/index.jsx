@@ -13,6 +13,8 @@ import AdminManagement from "./admin/AdminManagement";
 import ProductManagement from "./admin/ProductManagement";
 import AppProductDetails from "./admin/AppProductDetails";
 import OrderRecords from "./admin/OrderRecords";
+import CreateProduct from "./admin/CreateProduct";
+import UpdateProduct from "./admin/UpdateProduct";
 
 export {
   Home,
@@ -29,5 +31,7 @@ export {
   AppProductDetails,
   OrderRecords,
   AdminDashboard,
+  CreateProduct,
+  UpdateProduct,
   MyOrders,
 };

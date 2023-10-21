@@ -90,7 +90,7 @@ const Home = () => {
               return (
                 <div
                   className={`w-80 py-4 bg-gradient-to-r ${card}  rounded-lg`}>
-                  <div className="flex flex-col gap-2 px-10">
+                  <div className="flex flex-col gap-2 px-10 text-gray-900">
                     <p className="text-xs">Explore new arrivals</p>
                     <p className="text-xl font-bold max-w-[180px]">
                       Shop the latest from top brands.
@@ -99,7 +99,7 @@ const Home = () => {
                   <div className="px-3 py-[1px] bg-gray-200 mx-8 mt-3 rounded-2xl inline-block font-medium">
                     <Link
                       to="/products"
-                      className=" text-[0.85rem] tracking-wide">
+                      className=" text-[0.85rem] tracking-wide text-gray-900">
                       Shop Now
                     </Link>
                   </div>

@@ -30,7 +30,9 @@ const ProductManagement = () => {
     <section className="">
       <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-20">
         <div className="flex justify-center">
-          <button className="btn btn-primary mb-20">Add new product</button>
+          <Link to="create-product" className="btn btn-primary mb-20">
+            Add new product
+          </Link>
         </div>
 
         <div className="overflow-x-auto">
@@ -63,10 +65,12 @@ const ProductManagement = () => {
                     <td>{user.name}</td>
                     <td>{new Date(updatedAt).toString()}</td>
                     <td>
-                      <AiFillEdit
-                        size={16}
-                        className="cursor-pointer hover:text-blue-500 duration-300"
-                      />
+                      <Link to="update-product">
+                        <AiFillEdit
+                          size={16}
+                          className="cursor-pointer hover:text-blue-500 duration-300"
+                        />
+                      </Link>
                     </td>
                     <td>
                       <AiFillDelete

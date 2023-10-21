@@ -25,6 +25,7 @@ import {
   Navbar,
   ProductDetails,
   PrivateUserRoutes,
+  AdminRoute,
 } from "./components";
 import { AuthContextProvider } from "./context/useAuthContext";
 import { AppUsersProvider } from "./context/useAppUsersContext";
@@ -59,31 +60,40 @@ const App = () => {
                     <Route path="/my-orders" element={<MyOrders />} />
                   </Route>
                   {/* Admin */}
-
-                  <Route
-                    path="/admin/admin-dashboard"
-                    element={<AdminDashboard />}
-                  />
-                  <Route
-                    path="/admin/active-users"
-                    element={<UserManagement />}
-                  />
-                  <Route
-                    path="/admin/admin-users"
-                    element={<AdminManagement />}
-                  />
-                  <Route
-                    path="/admin/order-records"
-                    element={<OrderRecords />}
-                  />
-                  <Route
-                    path="/admin/product-management"
-                    element={<ProductManagement />}
-                  />
-                  <Route
-                    path="/admin/product-management/:id"
-                    element={<AppProductDetails />}
-                  />
+                  <Route path="" element={<AdminRoute />}>
+                    <Route
+                      path="/admin/admin-dashboard"
+                      element={<AdminDashboard />}
+                    />
+                    <Route
+                      path="/admin/active-users"
+                      element={<UserManagement />}
+                    />
+                    <Route
+                      path="/admin/admin-users"
+                      element={<AdminManagement />}
+                    />
+                    <Route
+                      path="/admin/order-records"
+                      element={<OrderRecords />}
+                    />
+                    <Route
+                      path="/admin/product-management"
+                      element={<ProductManagement />}
+                    />
+                    <Route
+                      path="/admin/product-management/:id"
+                      element={<AppProductDetails />}
+                    />
+                    <Route
+                      path="/create-product"
+                      element={<AppProductDetails />}
+                    />
+                    <Route
+                      path="/update-product"
+                      element={<AppProductDetails />}
+                    />
+                  </Route>
                 </Routes>
                 <Footer />
               </AppOrdersProvider>

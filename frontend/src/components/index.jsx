@@ -7,6 +7,7 @@ import EmptyCart from "./EmptyCart";
 import Footer from "./Footer";
 
 import PrivateUserRoutes from "./PrivateUserRoutes";
+import AdminRoute from "./AdminRoute";
 
 export {
   Navbar,
@@ -17,4 +18,5 @@ export {
   EmptyCart,
   Footer,
   PrivateUserRoutes,
+  AdminRoute,
 };

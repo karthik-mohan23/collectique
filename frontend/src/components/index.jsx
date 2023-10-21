@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import BannerCarousel from "./BannerCarousel";
 import Products from "./Products";
 import ProductDetails from "./ProductDetails";
 import Loader from "./Loader";
@@ -12,6 +13,7 @@ import AdminRoute from "./AdminRoute";
 
 export {
   Navbar,
+  BannerCarousel,
   Products,
   ProductDetails,
   Loader,

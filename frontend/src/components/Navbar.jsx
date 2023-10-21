@@ -131,7 +131,7 @@ const Navbar = () => {
             {user && !user.isAdmin ? (
               <li tabIndex={0}>
                 <details>
-                  <summary>{user?.name}</summary>
+                  <summary>{user?.name?.split(" ")[0]}</summary>
                   <ul className="p-2">
                     <li>
                       <Link to="/my-orders">Orders</Link>
@@ -147,7 +147,7 @@ const Navbar = () => {
             {user && user.isAdmin ? (
               <li>
                 <details>
-                  <summary>Admin</summary>
+                  <summary>{user?.name?.split(" ")[0]}</summary>
                   <ul className="p-2 bg-base-100">
                     <li>
                       <Link to="/admin/admin-dashboard">Dashboard</Link>

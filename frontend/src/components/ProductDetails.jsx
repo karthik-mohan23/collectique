@@ -6,6 +6,10 @@ import useFetchProductDetails from "../hooks/useFetchProductDetails";
 import Loader from "./Loader";
 import Error from "./Error";
 
+import { TbTruckDelivery } from "react-icons/tb";
+import { GiTakeMyMoney } from "react-icons/gi";
+import { RiServiceFill } from "react-icons/ri";
+
 const ProductDetails = () => {
   const [qty, setQty] = useState(1);
 
@@ -40,7 +44,7 @@ const ProductDetails = () => {
     <div className="flex flex-wrap justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
       {/* product img container */}
       <div className="max-w-sm">
-        <img src={image} alt={name} />
+        <img src={image} alt={name} className="rounded-lg" />
       </div>
       {/* details container */}
       <div>
@@ -70,6 +74,17 @@ const ProductDetails = () => {
         </button>
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>
+        <div className="flex flex-wrap mt-4 gap-8">
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+            <TbTruckDelivery size={25} /> Free Delivery*
+          </p>
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+            <GiTakeMyMoney size={25} /> Pay on delivery
+          </p>
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+            <RiServiceFill size={25} /> 10 days return policy
+          </p>
+        </div>
       </div>
     </div>
   );

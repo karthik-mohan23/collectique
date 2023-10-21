@@ -19,7 +19,7 @@ const ProductCards = () => {
         const { _id, name, assured, image, price, rating } = product;
         return (
           <Link
-            to={`product-details/${_id}`}
+            to={`/${_id}`}
             key={_id}
             className=" w-72 mb-10 rounded-xl shadow-xl pt-10">
             <div>

@@ -1,4 +1,4 @@
-import { Error, Loader } from "../../components";
+import { Error, Loader, Modal } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -79,25 +79,12 @@ const ProductManagement = () => {
                         onClick={handleModel}
                       />
                       {/* modal */}
-                      <dialog id="my_modal_2" className="modal">
-                        <div className="modal-box">
-                          <h3 className="font-bold text-lg">
-                            Delete this product?
-                          </h3>
-                          <p className="py-4">
-                            Press Confirm to delete this product?
-                          </p>
-                          <button
-                            className="btn btn-outline btn-error"
-                            onClick={handleDelete}>
-                            Confirm
-                          </button>
-                        </div>
-                        <form method="dialog" className="modal-backdrop">
-                          <button>Close</button>
-                        </form>
-                      </dialog>
-                      {/* end of modal */}
+                      <Modal
+                        title="Delete this product?"
+                        message="Press Confirm to delete this product?"
+                        onConfirm={handleDelete}
+                        btnText="Confirm"
+                      />
                     </td>
                   </tr>
                 );

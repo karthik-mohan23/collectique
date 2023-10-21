@@ -34,7 +34,12 @@ const getSingleProduct = async (req, res, next) => {
 const createProduct = async (req, res) => {
   const { newProduct } = req.body;
 
-  if (newProduct) {
+  if (
+    !newProduct.name ||
+    !newProduct.image ||
+    !newProduct.category ||
+    !newProduct.description
+  ) {
     res.status(400).json({ message: "Fill all fields" });
   }
 

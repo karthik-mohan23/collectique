@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../context/useAuthContext";
+import { useAuthContext } from "./context/useAuthContext";
 
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({

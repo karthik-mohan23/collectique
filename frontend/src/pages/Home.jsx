@@ -89,6 +89,7 @@ const Home = () => {
             {bgColors.map((card) => {
               return (
                 <div
+                  key={card}
                   className={`w-80 py-4 bg-gradient-to-r ${card}  rounded-lg`}>
                   <div className="flex flex-col gap-2 px-10 text-gray-900">
                     <p className="text-xs">Explore new arrivals</p>
@@ -114,7 +115,9 @@ const Home = () => {
             </h3>
             {faqData.map((accordion) => {
               return (
-                <div className="collapse collapse-arrow border border-base-300 bg-base-200 mb-4">
+                <div
+                  key={accordion.question}
+                  className="collapse collapse-arrow border border-base-300 bg-base-200 mb-4">
                   <input type="checkbox" />
                   <div className="collapse-title text-xl font-medium">
                     {accordion.question}

@@ -22,7 +22,7 @@ const AdminManagement = () => {
 
   return (
     <section className="">
-      <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-20">
+      <div className="w-[90%] max-w-3xl mx-auto min-h-screen pt-20">
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}

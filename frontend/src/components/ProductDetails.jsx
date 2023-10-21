@@ -75,13 +75,13 @@ const ProductDetails = () => {
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>
         <div className="flex flex-wrap mt-4 gap-8">
-          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-600  opacity-90">
             <TbTruckDelivery size={25} /> Free Delivery*
           </p>
-          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-600  opacity-90">
             <GiTakeMyMoney size={25} /> Pay on delivery
           </p>
-          <p className="flex flex-col gap-1 items-center font-medium text-amber-800 opacity-90">
+          <p className="flex flex-col gap-1 items-center font-medium text-amber-600 opacity-90">
             <RiServiceFill size={25} /> 10 days return policy
           </p>
         </div>

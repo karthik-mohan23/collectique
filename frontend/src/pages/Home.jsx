@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { BannerCarousel } from "../components";
+import ring from "../assets/ring.png";
+import footwear from "../assets/footwear.png";
+import watch from "../assets/watch.png";
 
-const bgColors = [
-  "from-yellow-300 to-yellow-200",
-  "from-fuchsia-400 to-fuchsia-300",
-  "from-cyan-300 to-cyan-200",
+const discoverCards = [
+  {
+    color: "from-yellow-300 to-yellow-200",
+    img: ring,
+  },
+  { color: "from-fuchsia-400 to-fuchsia-300", img: footwear },
+  { color: "from-cyan-300 to-cyan-200", img: watch },
 ];
 
 const faqData = [
@@ -86,30 +92,29 @@ const Home = () => {
           </h4>
           {/* cards */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 my-5">
-            {bgColors.map((card) => {
+            {discoverCards.map((card) => {
               return (
                 <div
                   key={card}
-                  className={`w-80 py-5 bg-gradient-to-r ${card}  rounded-lg`}>
-                  <div className="flex flex-col gap-2 px-10 text-gray-900">
-                    <p className="text-xs">Explore new arrivals</p>
-                    <p className="text-xl font-bold max-w-[180px]">
-                      Shop the latest from top brands.
-                    </p>
-                  </div>
-                  <div className="px-3 py-[1px] bg-gray-200 mx-8 mt-3 rounded-lg inline-block font-medium">
-                    <Link
-                      to="/products"
-                      className=" text-[0.85rem] tracking-wide text-gray-900">
-                      Shop Now
-                    </Link>
+                  className={`w-80 py-5 bg-gradient-to-r ${card.color}  rounded-lg`}>
+                  <div className="flex flex-col items-center">
+                    <div className="flex flex-col self-start gap-2 px-10 text-gray-900">
+                      <p className="text-xs">Explore new arrivals</p>
+                      <p className="text-2xl font-bold ">
+                        Shop the latest from top brands.{" "}
+                      </p>
+                    </div>
+                    {/* image */}
+                    <div>
+                      <img src={card.img} alt={card.color} className="h-80" />
+                    </div>
                   </div>
                 </div>
               );
             })}
           </div>
           {/* Accordion */}
-          <div className="pt-24">
+          <div className="pt-32">
             <h3 className="text-2xl md:text-4xl font-semibold mb-6">
               Frequently Asked Questions
             </h3>

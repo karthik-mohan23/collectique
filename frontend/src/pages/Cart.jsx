@@ -72,7 +72,7 @@ const Cart = () => {
         </table>
       </div>
       {/* Price details */}
-      <div className="w-80 p-8 border border-primary-content mx-auto lg:mx-0 mb-14">
+      <div className="w-80 p-8 border border-secondary mx-auto lg:mx-0 mb-14">
         <div className="flex justify-between">
           <p>
             Price{" "}

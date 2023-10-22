@@ -5,11 +5,8 @@ const Footer = () => {
     <footer className=" bg-base-200 ">
       <div className="footer p-10 bg-base-200 text-base-content w-[90%] max-w-5xl mx-auto">
         <aside>
-          <p className="text-xl">
-            <span className="text-4xl tracking-wide font-extrabold">
-              Collectique
-            </span>{" "}
-            Pvt Ltd.
+          <p className="text-4xl tracking-wide font-extrabold text-secondary">
+            Collectique
           </p>
           <p>Providing reliable tech since 1992</p>
         </aside>

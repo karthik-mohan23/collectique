@@ -21,7 +21,7 @@ const ProductCards = () => {
           <Link
             to={`/${_id}`}
             key={_id}
-            className=" w-72 mb-10 rounded-xl shadow-xl pt-10">
+            className=" w-72 mb-10 rounded-xl shadow-xl pt-10 border-2 border-secondary-focus  ">
             <div>
               {/* image */}
               <div className="relative">

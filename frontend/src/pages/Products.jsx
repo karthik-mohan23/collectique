@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Error, Loader, ProductCards } from "../components";
 import { useProductsContext } from "../context/useProductsContext";
 
@@ -19,6 +20,35 @@ const Products = () => {
   if (error) {
     return <Error />;
   }
+  console.log(products);
+
+  const [sort, setSort] = useState("");
+  const [filteredProducts, setFilterProducts] = useState(products);
+
+  const handleProductsSort = (e) => {
+    const { value } = e.target;
+    setSort(value); // Update sort state
+
+    if (value === "best-selling") {
+      setFilterProducts(products); // Set filtered products to the original array
+    } else {
+      // Clone the products array to avoid mutating the original array
+      const sortedProducts = [...products];
+
+      if (value === "a-z") {
+        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (value === "z-a") {
+        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (value === "lowest") {
+        sortedProducts.sort((a, b) => a.price - b.price);
+      } else if (value === "highest") {
+        sortedProducts.sort((a, b) => b.price - a.price);
+      }
+      // Update the filtered products state
+      setFilterProducts(sortedProducts);
+    }
+  };
+
   return (
     <section>
       <div className="w-[90%] px-7 max-w-5xl mx-auto py-10">
@@ -28,15 +58,16 @@ const Products = () => {
           </p>
           <div className=" flex-1 h-[0.5px] bg-gray-400 opacity-60"></div>
           <div>
-            <select className="select select-bordered">
-              <option disabled selected>
-                sort by
-              </option>
-              <option>Best selling</option>
-              <option>Alphabetically (A-Z)</option>
-              <option>Alphabetically (Z-A)</option>
-              <option>Price (low to high)</option>
-              <option>Price (high to low)</option>
+            <select
+              className="select select-bordered "
+              name="sort"
+              value={sort}
+              onChange={handleProductsSort}>
+              <option value="best-selling">Best selling</option>
+              <option value="a-z">Alphabetically (A-Z)</option>
+              <option value="z-a">Alphabetically (Z-A)</option>
+              <option value="lowest">Price (low to high)</option>
+              <option value="highest">Price (high to low)</option>
             </select>
           </div>
         </div>
@@ -45,7 +76,7 @@ const Products = () => {
           {cards.map((card) => {
             return (
               <div
-                key={card}
+                key={card.text}
                 className={`w-40 py-5 bg-gradient-to-r ${card.color} rounded-lg`}>
                 <div className="flex flex-col items-center">
                   <div className=" text-gray-900">
@@ -57,7 +88,7 @@ const Products = () => {
           })}
         </div>
 
-        <ProductCards products={products} />
+        <ProductCards products={filteredProducts} />
       </div>
     </section>
   );

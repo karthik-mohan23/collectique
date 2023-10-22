@@ -64,7 +64,7 @@ const faqData = [
 const Home = () => {
   return (
     <section>
-      <div className="w-[90%] max-w-5xl mx-auto">
+      <div className="w-[90%] px-5 max-w-5xl mx-auto">
         <div className="py-20 lg:pt-28 lg:pb-40 flex flex-wrap lg:flex-nowrap">
           <div>
             <h1 className="max-w-2xl text-4xl font-bold tracking-tight sm:text-6xl">

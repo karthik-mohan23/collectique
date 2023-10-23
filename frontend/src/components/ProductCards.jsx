@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import StarRating from "./StarRating";
 
 const ProductCards = ({ products }) => {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 pt-20 sm:pt-10 pb-10">
       {products.map((product) => {
-        const { _id, name, assured, image, price, rating } = product;
+        const { _id, name, assured, image, price, rating, numReviews } =
+          product;
         return (
           <Link
             to={`/${_id}`}
@@ -26,33 +28,7 @@ const ProductCards = ({ products }) => {
               </div>
               <div className="py-5 ps-5">
                 {/* rating */}
-                <div className="rating">
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-2"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                </div>
+                <StarRating stars={rating} reviewsCount={numReviews} />
 
                 <h2 className=" py-2 opacity-75 tracking-wide">{name}</h2>
 

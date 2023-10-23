@@ -1,31 +1,8 @@
-import { useState } from "react";
-
 const UpdateProduct = () => {
-  const [updateProductData, setUpdatedProductData] = useState({
-    name: "",
-    seller: "",
-    category: "",
-    description: "",
-    price: 0,
-    assured: false,
-    rating: 0,
-    numReviews: 0,
-    countInStock: false,
-    image: "",
-  });
-
-  const handleDataChange = () => {
-    console.log("changing");
-  };
-
-  const handleUpdatedProductDataSubmit = () => {
-    console.log("submitted");
-  };
-
   return (
     <div className="w-full">
-      <div className="w-[90%]  mx-auto  min-h-[80vh] pb-44">
-        <form className="flex flex-col gap-2 p-10 max-w-3xl mx-auto mt-20 shadow-2xl">
+      <div className="w-[90%]  mx-auto  min-h-[80vh] pt-10 pb-20">
+        <form className="flex flex-col gap-2 p-10 rounded-2xl max-w-3xl mx-auto shadow-2xl">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -100,19 +77,36 @@ const UpdateProduct = () => {
             <label className="label">
               <span className="label-text">Assured</span>
             </label>
-            <input type="checkbox" className="checkbox" />
+            <input
+              type="checkbox"
+              className="checkbox"
+              name="assured"
+              checked={updateProductData.assured}
+              onChange={handleDataChange}
+            />
           </div>
           <div className="form-control w-full max-w-xs mb-6">
             <label className="label">
               <span className="label-text">In stock?</span>
             </label>
-            <input type="checkbox" className="checkbox" />
+            <input
+              type="checkbox"
+              className="checkbox"
+              name="countInStock"
+              checked={updateProductData.countInStock}
+              onChange={handleDataChange}
+            />
           </div>
+
           <div className="form-control w-full max-w-xs mb-6">
             <label className="label">
               <span className="label-text">Upload image</span>
             </label>
-            <input type="file" className="file-input w-full max-w-xs" />
+            <input
+              type="file"
+              className="file-input w-full max-w-xs"
+              onChange={handleUploadImage}
+            />
           </div>
 
           <div className="form-control mt-4">

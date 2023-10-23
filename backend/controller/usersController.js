@@ -89,7 +89,6 @@ const logoutUser = async (req, res) => {
 // @route   GET /api/users
 // @access  Private - Admin
 const getAllUsers = async (req, res) => {
-  console.log(req);
   try {
     const allUsers = await UserModel.find({}).select("-password");
     if (allUsers) {

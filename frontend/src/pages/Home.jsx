@@ -95,7 +95,7 @@ const Home = () => {
             {discoverCards.map((card) => {
               return (
                 <div
-                  key={card}
+                  key={card.color}
                   className={`w-80 py-5 bg-gradient-to-r ${card.color}  rounded-lg`}>
                   <div className="flex flex-col items-center">
                     <div className="flex flex-col self-start gap-2 px-10 text-gray-900">

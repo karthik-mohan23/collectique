@@ -1,11 +1,11 @@
-const productsModel = require("../models/productModel");
+const ProductsModel = require("../models/productModel");
 
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
 const getAllProducts = async (req, res, next) => {
   try {
-    const allProducts = await productsModel.find({}).populate("user", "name");
+    const allProducts = await ProductsModel.find({}).populate("user", "name");
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ const getAllProducts = async (req, res, next) => {
 // @access  Public
 const getSingleProduct = async (req, res, next) => {
   try {
-    const singleProduct = await productsModel.findById(req.params.id);
+    const singleProduct = await ProductsModel.findById(req.params.id);
     if (singleProduct) {
       res.status(200).json(singleProduct);
     } else {
@@ -32,22 +32,39 @@ const getSingleProduct = async (req, res, next) => {
 // @route   POST /api/products
 // @access  Private/Admin
 const createProduct = async (req, res) => {
-  const { productData: newProduct } = req.body;
+  const {
+    name,
+    seller,
+    category,
+    description,
+    price,
+    assured,
+    rating,
+    numReviews,
+    countInStock,
+    image,
+  } = req.body;
 
-  if (
-    !newProduct.name ||
-    !newProduct.image ||
-    !newProduct.category ||
-    !newProduct.description
-  ) {
-    res.status(400).json({ message: "Fill all fields" });
-  }
+  const newProduct = new ProductsModel({
+    user: req.user._id,
+    name,
+    seller,
+    category,
+    description,
+    price,
+    assured,
+    rating,
+    numReviews,
+    countInStock,
+    image,
+  });
 
   try {
-    const createdProduct = await product.create(newProduct);
-    res.status(201).json(createdProduct);
+    const saveNewProduct = await newProduct.save();
+    res.status(201).json(saveNewProduct);
   } catch (error) {
-    res.status(400).json({ message: "Something went wrong" });
+    console.log(error);
+    res.status(500).json({ message: "Something went wrong" });
   }
 };
 
@@ -55,43 +72,41 @@ const createProduct = async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = async (req, res) => {
-  try {
-    const {
-      name,
-      price,
-      image,
-      seller,
-      category,
-      countInStock,
-      numReviews,
-      description,
-      assured,
-      rating,
-    } = req.body;
+  const product = req.body;
+  res.json(product);
+  // try {
+  // const {
+  //   name,
+  //   price,
+  //   image,
+  //   seller,
+  //   category,
+  //   countInStock,
+  //   description,
+  //   assured,
+  // } = req.body;
 
-    const product = await Product.findById(req.params.id);
+  // const product = await Product.findById(req.params.id);
 
-    if (product) {
-      product.name = name;
-      product.price = price;
-      product.description = description;
-      product.image = image;
-      product.seller = seller;
-      product.category = category;
-      product.countInStock = countInStock;
-      product.numReviews = numReviews;
-      product.assured = assured;
-      product.rating = rating;
+  // if (product) {
+  //   product.name = name;
+  //   product.price = price;
+  //   product.description = description;
+  //   product.image = image;
+  //   product.seller = seller;
+  //   product.category = category;
+  //   product.countInStock = countInStock;
+  //   product.assured = assured;
 
-      const updatedProduct = await product.save();
-      res.json(updatedProduct);
-    } else {
-      res.status(404);
-      throw new Error("Product not found");
-    }
-  } catch (error) {
-    res.status(400).json({ message: "Something went wrong" });
-  }
+  //   const updatedProduct = await product.save();
+  //   res.json(updatedProduct);
+  // } else {
+  //   res.status(404);
+  //   throw new Error("Product not found");
+  //   }
+  // } catch (error) {
+  //   res.status(400).json({ error: "Something went wrong" });
+  // }
 };
 
 // @desc    Delete single product by id
@@ -99,7 +114,8 @@ const updateProduct = async (req, res) => {
 // @access  Private/Admin
 const deleteProduct = async (req, res, next) => {
   try {
-    const singleProduct = await productsModel.findByIdAndDelete(req.params.id);
+    console.log(req);
+    const singleProduct = await ProductsModel.findByIdAndDelete(req.params.id);
     if (singleProduct) {
       res.status(200).json(singleProduct);
     } else {

@@ -7,6 +7,7 @@ import Error from "./Error";
 import EmptyCart from "./EmptyCart";
 import Footer from "./Footer";
 import Modal from "./Modal";
+import StarRating from "./StarRating";
 
 import PrivateUserRoutes from "./PrivateUserRoutes";
 import AdminRoute from "./AdminRoute";
@@ -20,6 +21,7 @@ export {
   Error,
   EmptyCart,
   Modal,
+  StarRating,
   Footer,
   PrivateUserRoutes,
   AdminRoute,

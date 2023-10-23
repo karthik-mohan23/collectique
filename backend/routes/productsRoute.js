@@ -11,9 +11,10 @@ const {
 
 // to get all products
 router.get("/", getAllProducts);
-
 // to get single product
 router.get("/:id", getSingleProduct);
+
+// admin
 router.post("/", protect, admin, createProduct);
 router.put("/:id", protect, admin, updateProduct);
 router.delete("/:id", protect, admin, deleteProduct);

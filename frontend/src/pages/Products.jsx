@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Error, Loader, ProductCards } from "../components";
 import { useProductsContext } from "../context/useProductsContext";
+import sale from "../assets/sale.png";
 
 const cards = [
   {
@@ -51,12 +52,13 @@ const Products = () => {
 
   return (
     <section>
-      <div className="w-[90%] px-7 max-w-5xl mx-auto py-10">
+      <div className="w-[90%] px-7 max-w-5xl mx-auto pb-10">
+        <img src={sale} alt="sale" className="my-10 rounded-md " />
         <div className="flex justify-between items-center gap-8">
-          <p className="text-2xl font-semibold">
+          <p className="text-2xl font-semibold flex-shrink-0">
             Products <span className="opacity-60">({products.length}) </span>
           </p>
-          <div className=" flex-1 h-[0.5px] bg-gray-400 opacity-60"></div>
+          <div className="h-[0.5px] w-3/4 bg-gray-400 opacity-60"></div>
           <div>
             <select
               className="select select-bordered "

@@ -1,7 +1,6 @@
 const OrderModel = require("../models/orderModel");
 
 const placeOrder = async (req, res) => {
-  console.log(req);
   try {
     // Get userId from the authenticated user
     const userId = req.user._id;
@@ -9,7 +8,6 @@ const placeOrder = async (req, res) => {
     // Get order details from the request body
 
     const { cartItems, shippingAddress, paymentMethod, totalPrice } = req.body;
-    console.log(cartItems);
 
     // Create a new order object with userId, order items, and isDelivered set to false
     const newOrder = {
@@ -26,7 +24,6 @@ const placeOrder = async (req, res) => {
 
     res.status(201).json(createdOrder);
   } catch (error) {
-    console.log(error);
     res.status(400).json({ message: "Oops, couldn't place the order." });
   }
 };

@@ -70,7 +70,7 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     assured: {
-      type: String,
+      type: Boolean,
       required: true,
     },
   },
@@ -80,9 +80,3 @@ const productSchema = new mongoose.Schema(
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
-
-//  A product can have multiple reviews associated with it. By using an array, you can store and retrieve all the reviews related to a product easily. Each element in the reviews array represents an individual review, which typically includes information like the user who left the review, the rating, the comment, and any other review-specific data.
-
-// Scalability: As your application grows, you may want to add more features and properties to reviews, such as timestamps for when reviews were created, updated, or deleted, or additional metadata.
-
-// Flexibility: When reviews are stored as an array within the product schema, you can have multiple reviews associated with a single product.

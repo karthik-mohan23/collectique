@@ -9,6 +9,7 @@ import Error from "./Error";
 import { TbTruckDelivery } from "react-icons/tb";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { RiServiceFill } from "react-icons/ri";
+import StarRating from "./StarRating";
 
 const ProductDetails = () => {
   const [qty, setQty] = useState(1);
@@ -51,6 +52,7 @@ const ProductDetails = () => {
         <h4>{seller}</h4>
         <h2 className="text-2xl md:text-3xl font-medium">{name}</h2>
         <div className="divider"></div>
+        <StarRating stars={rating} reviewsCount={numReviews} />
         <p>{countInStock} in stock</p>
         <p className="my-4 font-semibold text-xl text-orange-500">₹ {price}</p>
         {/* select input */}

@@ -28,9 +28,9 @@ const ProductManagement = () => {
 
   return (
     <section className="">
-      <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-20">
+      <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-10">
         <div className="flex justify-center">
-          <Link to="create-product" className="btn btn-primary mb-20">
+          <Link to="create-product" className="btn btn-primary mb-10">
             Add new product
           </Link>
         </div>

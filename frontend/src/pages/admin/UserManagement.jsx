@@ -1,18 +1,32 @@
-import { Error, Loader } from "../../components";
+import axios from "axios";
+import { Error, Loader, Modal } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 import { AiFillDelete } from "react-icons/ai";
 
 const UserManagement = () => {
   // Users
-  const { appUsersLoading, appUsersError, appUsers } = useAppUsersContext();
+  const { appUsersLoading, appUsersError, appUsers, fetchAppUsers } =
+    useAppUsersContext();
   if (appUsersLoading) {
     return <Loader />;
   }
   if (appUsersError) {
     return <Error />;
   }
-  const activeUsers = appUsers?.filter((user) => !user.isAdmin);
 
+  const handleModel = () => {
+    document.getElementById("my_modal_2").showModal();
+  };
+
+  const handleDelete = async (userId) => {
+    try {
+      const response = await axios.delete(`/api/users/${userId}`);
+      fetchAppUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const activeUsers = appUsers?.filter((user) => !user.isAdmin);
   if (activeUsers.length === 0) {
     return (
       <div className="w-[90%] max-w-5xl mx-auto grid place-content-center min-h-[80vh]">
@@ -38,9 +52,9 @@ const UserManagement = () => {
             </thead>
             <tbody>
               {activeUsers.map((user, index) => {
-                const { name, email, _id, updatedAt } = user;
+                const { name, email, _id: userId, updatedAt } = user;
                 return (
-                  <tr key={_id}>
+                  <tr key={userId}>
                     <th>{index + 1}</th>
                     <td>{name}</td>
                     <td>{email}</td>
@@ -49,6 +63,14 @@ const UserManagement = () => {
                       <AiFillDelete
                         size={16}
                         className="cursor-pointer hover:text-red-500 duration-300"
+                        onClick={handleModel}
+                      />
+                      {/* modal */}
+                      <Modal
+                        title="Delete this user?"
+                        message="Press Confirm to delete this user?"
+                        onConfirm={() => handleDelete(userId)}
+                        btnText="Confirm"
                       />
                     </td>
                   </tr>

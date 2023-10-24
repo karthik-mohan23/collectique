@@ -35,7 +35,9 @@ const OrderRecords = () => {
                 <th>Items</th>
                 <th>Total Price</th>
                 <th>Status</th>
+                <th>Date Ordered</th>
                 <th>Confirm</th>
+                <th>Delivered Date</th>
               </tr>
             </thead>
             <tbody>
@@ -46,6 +48,8 @@ const OrderRecords = () => {
                   isDelivered,
                   totalPrice,
                   user,
+                  createdAt,
+                  updatedAt,
                   _id: orderId,
                 } = order;
                 return (
@@ -61,6 +65,7 @@ const OrderRecords = () => {
                     <td>{cartItems.length}</td>
                     <td>{totalPrice}</td>
                     <td>{isDelivered ? `Delivered` : `Not Delivered`}</td>
+                    <td>{new Date(createdAt).toString()}</td>
                     <td>
                       {isDelivered ? (
                         <AiOutlineCheckCircle
@@ -70,10 +75,15 @@ const OrderRecords = () => {
                       ) : (
                         <AiOutlineCheckCircle
                           size={25}
-                          className="cursor-pointer text-accent hover:text-green-300 duration-300"
+                          className="cursor-pointer text-accent hover:text-green-400 duration-300"
                           onClick={(e) => handleIsDelivered(orderId)}
                         />
                       )}
+                    </td>
+                    <td>
+                      {isDelivered
+                        ? new Date(updatedAt).toString()
+                        : `Not Delivered`}
                     </td>
                   </tr>
                 );

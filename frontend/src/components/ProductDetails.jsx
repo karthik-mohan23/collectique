@@ -41,6 +41,7 @@ const ProductDetails = () => {
     rating,
     seller,
   } = productDetails;
+  console.log(image);
   return (
     <div className="flex flex-wrap justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
       {/* product img container */}

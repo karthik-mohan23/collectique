@@ -1,4 +1,104 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import useFetchProductDetails from "../../hooks/useFetchProductDetails";
+import { Error, Loader } from "../../components";
+import axios from "axios";
+
 const UpdateProduct = () => {
+  const [updateProductData, setUpdateProductData] = useState({
+    name: "",
+    seller: "",
+    category: "",
+    description: "",
+    price: 0,
+    assured: false,
+    countInStock: false,
+    image: "",
+  });
+
+  const { productId } = useParams();
+  const { loading, error, productDetails } = useFetchProductDetails(productId);
+
+  useEffect(() => {
+    if (productDetails) {
+      setUpdateProductData({
+        name: productDetails.name,
+        seller: productDetails.seller,
+        category: productDetails.category,
+        description: productDetails.description,
+        price: productDetails.price,
+        assured: productDetails.assured,
+        countInStock: productDetails.countInStock,
+        image: productDetails.image,
+      });
+    }
+  }, [productDetails]);
+
+  const handleDataChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      setUpdateProductData({ ...updateProductData, [name]: checked });
+    } else {
+      setUpdateProductData({ ...updateProductData, [name]: value });
+    }
+  };
+  const handleUploadImage = async (e) => {
+    const file = e.target.files[0]; // Get the selected file
+    console.log(file);
+    if (file) {
+      // Create a new FormData object to send only the image
+      const formData = new FormData();
+      formData.append("image", file);
+      console.log(formData, "formData");
+
+      try {
+        const response = await axios.post("/api/upload", formData);
+        console.log("Image uploaded successfully!");
+        // Update the product data with the selected image
+        console.log(response);
+        setUpdateProductData({
+          ...updateProductData,
+          image: response.data.image,
+        });
+      } catch (error) {
+        console.error("An error occurred while uploading the image:", error);
+      }
+    }
+  };
+  const handleUpdatedProductDataSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `/api/products/${productId}`,
+        updateProductData
+      );
+
+      if (response.status === 201) {
+        console.log("Product created successfully!");
+        console.log(response);
+        setUpdateProductData({
+          name: "",
+          seller: "",
+          category: "",
+          description: "",
+          price: 0,
+          assured: false,
+          rating: 0,
+          numReviews: 0,
+          countInStock: false,
+          image: null,
+        });
+      } else {
+        console.error("Failed to create the product");
+      }
+    } catch (error) {
+      console.error("An error occurred while creating the product:", error);
+    }
+  };
+
+  console.log(updateProductData);
+
   return (
     <div className="w-full">
       <div className="w-[90%]  mx-auto  min-h-[80vh] pt-10 pb-20">

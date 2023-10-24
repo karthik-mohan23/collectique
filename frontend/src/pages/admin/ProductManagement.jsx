@@ -65,7 +65,7 @@ const ProductManagement = () => {
                     <td>{user.name}</td>
                     <td>{new Date(updatedAt).toString()}</td>
                     <td>
-                      <Link to="update-product">
+                      <Link to={`update-product/${_id}`}>
                         <AiFillEdit
                           size={16}
                           className="cursor-pointer hover:text-blue-500 duration-300"

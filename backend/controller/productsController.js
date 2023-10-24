@@ -72,41 +72,42 @@ const createProduct = async (req, res) => {
 // @route   PUT /api/products/:id
 // @access  Private/Admin
 const updateProduct = async (req, res) => {
-  const product = req.body;
-  res.json(product);
-  // try {
-  // const {
-  //   name,
-  //   price,
-  //   image,
-  //   seller,
-  //   category,
-  //   countInStock,
-  //   description,
-  //   assured,
-  // } = req.body;
+  const {
+    name,
+    price,
+    image,
+    seller,
+    category,
+    countInStock,
+    description,
+    assured,
+  } = req.body;
+  console.log(req.body);
+  console.log(req.params);
 
-  // const product = await Product.findById(req.params.id);
+  try {
+    const product = await ProductsModel.findById(req.params.id);
+    console.log(product);
 
-  // if (product) {
-  //   product.name = name;
-  //   product.price = price;
-  //   product.description = description;
-  //   product.image = image;
-  //   product.seller = seller;
-  //   product.category = category;
-  //   product.countInStock = countInStock;
-  //   product.assured = assured;
+    if (product) {
+      product.name = name;
+      product.price = price;
+      product.description = description;
+      product.image = image;
+      product.seller = seller;
+      product.category = category;
+      product.countInStock = countInStock;
+      product.assured = assured;
 
-  //   const updatedProduct = await product.save();
-  //   res.json(updatedProduct);
-  // } else {
-  //   res.status(404);
-  //   throw new Error("Product not found");
-  //   }
-  // } catch (error) {
-  //   res.status(400).json({ error: "Something went wrong" });
-  // }
+      const updatedProduct = await product.save();
+      res.status(201).json(updatedProduct);
+    } else {
+      res.status(404);
+      throw new Error("Product not found");
+    }
+  } catch (error) {
+    res.status(400).json({ error: "Something went wrong" });
+  }
 };
 
 // @desc    Delete single product by id

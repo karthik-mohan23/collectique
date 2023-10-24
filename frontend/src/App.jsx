@@ -91,7 +91,7 @@ const App = () => {
                       element={<CreateProduct />}
                     />
                     <Route
-                      path="/admin/product-management/update-product"
+                      path="/admin/product-management/update-product/:productId"
                       element={<UpdateProduct />}
                     />
                   </Route>

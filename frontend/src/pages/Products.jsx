@@ -21,7 +21,6 @@ const Products = () => {
   if (error) {
     return <Error />;
   }
-  console.log(products);
 
   const [sort, setSort] = useState("");
   const [filteredProducts, setFilterProducts] = useState(products);

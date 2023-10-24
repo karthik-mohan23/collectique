@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useProductsContext } from "../../context/useProductsContext";
 
 const CreateProduct = () => {
+  const { loading, error, products, fetchProducts } = useProductsContext();
+
   const [productData, setProductData] = useState({
     name: "",
     seller: "",
@@ -46,6 +49,7 @@ const CreateProduct = () => {
           countInStock: false,
           image: null,
         });
+        fetchProducts();
       } else {
         console.error("Failed to create the product");
       }
@@ -74,6 +78,7 @@ const CreateProduct = () => {
       }
     }
   };
+
   return (
     <div className="w-full">
       <div className="w-[90%]  mx-auto  min-h-[80vh] pt-10 pb-20">

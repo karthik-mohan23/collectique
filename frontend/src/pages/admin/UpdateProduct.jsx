@@ -3,8 +3,11 @@ import { useParams } from "react-router-dom";
 import useFetchProductDetails from "../../hooks/useFetchProductDetails";
 import { Error, Loader } from "../../components";
 import axios from "axios";
+import { useProductsContext } from "../../context/useProductsContext";
 
 const UpdateProduct = () => {
+  const { fetchProducts } = useProductsContext();
+
   const [updateProductData, setUpdateProductData] = useState({
     name: "",
     seller: "",
@@ -19,6 +22,12 @@ const UpdateProduct = () => {
   const { productId } = useParams();
   const { loading, error, productDetails } = useFetchProductDetails(productId);
 
+  if (loading) {
+    <Loader />;
+  }
+  if (error) {
+    <Error />;
+  }
   useEffect(() => {
     if (productDetails) {
       setUpdateProductData({
@@ -89,6 +98,7 @@ const UpdateProduct = () => {
           countInStock: false,
           image: null,
         });
+        fetchProducts();
       } else {
         console.error("Failed to create the product");
       }
@@ -96,8 +106,6 @@ const UpdateProduct = () => {
       console.error("An error occurred while creating the product:", error);
     }
   };
-
-  console.log(updateProductData);
 
   return (
     <div className="w-full">
@@ -112,7 +120,7 @@ const UpdateProduct = () => {
               placeholder="name"
               className="input input-bordered"
               name="name"
-              value={updateProductData.name}
+              value={updateProductData.name || ""}
               onChange={handleDataChange}
               required
             />
@@ -126,7 +134,7 @@ const UpdateProduct = () => {
               placeholder="seller"
               className="input input-bordered"
               name="seller"
-              value={updateProductData.seller}
+              value={updateProductData.seller || ""}
               onChange={handleDataChange}
               required
             />
@@ -140,7 +148,7 @@ const UpdateProduct = () => {
               placeholder="category"
               className="input input-bordered"
               name="category"
-              value={updateProductData.category}
+              value={updateProductData.category || ""}
               onChange={handleDataChange}
               required
             />
@@ -154,7 +162,7 @@ const UpdateProduct = () => {
               placeholder="description"
               className="input input-bordered"
               name="description"
-              value={updateProductData.description}
+              value={updateProductData.description || ""}
               onChange={handleDataChange}
               required
             />
@@ -168,7 +176,7 @@ const UpdateProduct = () => {
               placeholder="price"
               className="input input-bordered"
               name="price"
-              value={updateProductData.price}
+              value={updateProductData.price || ""}
               onChange={handleDataChange}
               required
             />
@@ -181,7 +189,7 @@ const UpdateProduct = () => {
               type="checkbox"
               className="checkbox"
               name="assured"
-              checked={updateProductData.assured}
+              checked={updateProductData.assured || ""}
               onChange={handleDataChange}
             />
           </div>
@@ -193,7 +201,7 @@ const UpdateProduct = () => {
               type="checkbox"
               className="checkbox"
               name="countInStock"
-              checked={updateProductData.countInStock}
+              checked={updateProductData.countInStock || ""}
               onChange={handleDataChange}
             />
           </div>

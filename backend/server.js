@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 // allows to access req.cookies
 app.use(cookieParser());
 // to access images
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static("uploads"));
 
 // routes
 const productsRoute = require("./routes/productsRoute");

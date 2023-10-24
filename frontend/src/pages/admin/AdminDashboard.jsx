@@ -8,7 +8,8 @@ import { useEffect } from "react";
 
 const AdminDashboard = () => {
   // Users
-  const { appUsersLoading, appUsersError, appUsers } = useAppUsersContext();
+  const { appUsersLoading, appUsersError, appUsers, fetchAppUsers } =
+    useAppUsersContext();
   // Orders
   const { appOrdersLoading, appOrdersError, appOrders } = useAppOrdersContext();
   // products
@@ -17,6 +18,7 @@ const AdminDashboard = () => {
     error: productsError,
     products: allProducts,
   } = useProductsContext();
+
   if (appUsersLoading || appOrdersLoading || productsLoading) {
     return <Loader />;
   }

@@ -35,7 +35,7 @@ export const AppUsersProvider = ({ children }) => {
   }, []);
 
   return (
-    <AppUsersContext.Provider value={{ ...state, dispatch }}>
+    <AppUsersContext.Provider value={{ ...state, dispatch, fetchAppUsers }}>
       {children}
     </AppUsersContext.Provider>
   );

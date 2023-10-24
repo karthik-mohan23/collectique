@@ -1,8 +1,10 @@
+import axios from "axios";
 import { Error, Loader } from "../../components";
 import { useAppOrdersContext } from "../../context/useAppOrdersContext";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 const OrderRecords = () => {
-  const { appOrdersLoading, appOrdersError, appOrders } = useAppOrdersContext();
+  const { appOrdersLoading, appOrdersError, appOrders, fetchAppOrders } =
+    useAppOrdersContext();
   if (appOrdersLoading) {
     return <Loader />;
   }
@@ -10,7 +12,14 @@ const OrderRecords = () => {
     return <Error />;
   }
 
-  console.log(appOrders);
+  const handleIsDelivered = async (orderId) => {
+    try {
+      const response = await axios.put(`/api/orders/${orderId}/deliver`);
+      fetchAppOrders();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <section className="">
@@ -37,10 +46,10 @@ const OrderRecords = () => {
                   isDelivered,
                   totalPrice,
                   user,
-                  _id,
+                  _id: orderId,
                 } = order;
                 return (
-                  <tr key={_id}>
+                  <tr key={orderId}>
                     <th>{index + 1}</th>
                     <td>{user.name}</td>
                     <td>
@@ -51,12 +60,18 @@ const OrderRecords = () => {
                     </td>
                     <td>{cartItems.length}</td>
                     <td>{totalPrice}</td>
-                    <td>{isDelivered ? `Deliverd` : `Not Delivered`}</td>
+                    <td>{isDelivered ? `Delivered` : `Not Delivered`}</td>
                     <td>
-                      {isDelivered ? null : (
+                      {isDelivered ? (
                         <AiOutlineCheckCircle
                           size={25}
-                          className="cursor-pointer hover:text-green-400 duration-300"
+                          className="opacity-60"
+                        />
+                      ) : (
+                        <AiOutlineCheckCircle
+                          size={25}
+                          className="cursor-pointer text-accent hover:text-green-300 duration-300"
+                          onClick={(e) => handleIsDelivered(orderId)}
                         />
                       )}
                     </td>

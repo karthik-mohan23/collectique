@@ -71,9 +71,8 @@ const getAllOrders = async (req, res) => {
 // @access  Private/Admin
 const updateOrderToDelivered = async (req, res) => {
   try {
-    console.log(req.params.id);
-    const order = await Order.findById(req.params.id);
-    console.log(order);
+    const order = await OrderModel.findById(req.params.id);
+
     if (order) {
       order.isDelivered = true;
       const updatedOrder = await order.save();

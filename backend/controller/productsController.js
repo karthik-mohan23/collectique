@@ -113,10 +113,11 @@ const updateProduct = async (req, res) => {
 // @desc    Delete single product by id
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
-const deleteProduct = async (req, res, next) => {
+const deleteProduct = async (req, res) => {
   try {
-    console.log(req);
+    console.log(req.params);
     const singleProduct = await ProductsModel.findByIdAndDelete(req.params.id);
+    console.log(singleProduct);
     if (singleProduct) {
       res.status(200).json(singleProduct);
     } else {

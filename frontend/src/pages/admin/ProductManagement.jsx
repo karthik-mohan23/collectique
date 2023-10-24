@@ -1,11 +1,12 @@
-import { Error, Loader, Modal } from "../../components";
+import { Error, Loader } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
 
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import axios from "axios";
 
 const ProductManagement = () => {
-  const { loading, error, products } = useProductsContext();
+  const { loading, error, products, fetchProducts } = useProductsContext();
 
   if (loading) {
     return <Loader />;
@@ -14,18 +15,20 @@ const ProductManagement = () => {
     return <Error />;
   }
 
-  const handleModel = () => {
-    document.getElementById("my_modal_2").showModal();
-  };
-
-  const handleDelete = () => {
-    console.log("clicked");
-    window.location.reload();
+  const handleDelete = async (productId) => {
+    try {
+      console.log(productId);
+      const response = await axios.delete(`/api/products/${productId}`);
+      console.log(response);
+      fetchProducts();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <section className="">
-      <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-10">
+      <div className="w-[90%] max-w-5xl mx-auto min-h-screen pt-10 pb-20">
         <div className="flex justify-center">
           <Link to="create-product" className="btn btn-primary mb-10">
             Add new product
@@ -49,20 +52,27 @@ const ProductManagement = () => {
             </thead>
             <tbody>
               {products.map((product, index) => {
-                const { name, category, price, updatedAt, user, _id } = product;
-                return (
-                  <tr key={_id}>
-                    <th>{index + 1}</th>
-                    <td className="hover:text-accent duration-300">
-                      <Link to={`${_id}`}>{name}</Link>
-                    </td>
+                const {
+                  name,
+                  category,
+                  price,
+                  updatedAt,
+                  user,
+                  _id: productId,
+                } = product;
 
+                return (
+                  <tr key={productId}>
+                    <th>{index + 1}</th>
+                    <td className="text-secondary font-semibold hover:text-primary duration-300">
+                      <Link to={`${productId}`}>{name}</Link>
+                    </td>
                     <td>{category}</td>
                     <td>₹{price}</td>
                     <td>{user.name}</td>
                     <td>{new Date(updatedAt).toString()}</td>
                     <td>
-                      <Link to={`update-product/${_id}`}>
+                      <Link to={`update-product/${productId}`}>
                         <AiFillEdit
                           size={16}
                           className="cursor-pointer hover:text-blue-500 duration-300"
@@ -73,14 +83,7 @@ const ProductManagement = () => {
                       <AiFillDelete
                         size={16}
                         className="cursor-pointer hover:text-red-500 duration-300"
-                        onClick={handleModel}
-                      />
-                      {/* modal */}
-                      <Modal
-                        title="Delete this product?"
-                        message="Press Confirm to delete this product?"
-                        onConfirm={handleDelete}
-                        btnText="Confirm"
+                        onClick={() => handleDelete(productId)}
                       />
                     </td>
                   </tr>

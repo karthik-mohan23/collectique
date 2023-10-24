@@ -35,7 +35,7 @@ export const AppOrdersProvider = ({ children }) => {
   }, []);
 
   return (
-    <AppOrdersContext.Provider value={{ ...state, dispatch }}>
+    <AppOrdersContext.Provider value={{ ...state, dispatch, fetchAppOrders }}>
       {children}
     </AppOrdersContext.Provider>
   );

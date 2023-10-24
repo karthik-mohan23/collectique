@@ -1,6 +1,5 @@
 import { Error, Loader } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
-import { AiFillDelete } from "react-icons/ai";
 
 const AdminManagement = () => {
   const { appUsersLoading, appUsersError, appUsers } = useAppUsersContext();
@@ -31,23 +30,18 @@ const AdminManagement = () => {
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
-                <th></th>
+                <th>Date Modified</th>
               </tr>
             </thead>
             <tbody>
               {adminUsers.map((user, index) => {
-                const { name, email, _id } = user;
+                const { name, email, _id, updatedAt } = user;
                 return (
                   <tr key={_id}>
                     <th>{index + 1}</th>
                     <td>{name}</td>
                     <td>{email}</td>
-                    <td>
-                      <AiFillDelete
-                        size={16}
-                        className="cursor-pointer hover:text-red-500 duration-300"
-                      />
-                    </td>
+                    <td>{new Date(updatedAt).toString()}</td>
                   </tr>
                 );
               })}

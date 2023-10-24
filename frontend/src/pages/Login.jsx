@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from "../context/useAuthContext";
+import { useAppUsersContext } from "../context/useAppUsersContext";
 
 const Login = () => {
+  const { appUsersLoading, appUsersError, appUsers, fetchAppUsers } =
+    useAppUsersContext();
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
   });
 
-  const { setUser } = useAuthContext();
+  const { setUser, user } = useAuthContext();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -40,6 +43,9 @@ const Login = () => {
         email: "",
         password: "",
       });
+      if (user?.isAdmin) {
+        fetchAppUsers();
+      }
       // navigate back to home
       navigate("/");
     } catch (error) {

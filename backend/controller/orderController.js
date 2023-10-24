@@ -1,5 +1,8 @@
 const OrderModel = require("../models/orderModel");
 
+// @desc    Create new order
+// @route   POST /api/orders
+// @access  Private
 const placeOrder = async (req, res) => {
   try {
     // Get userId from the authenticated user
@@ -27,6 +30,9 @@ const placeOrder = async (req, res) => {
     res.status(400).json({ message: "Oops, couldn't place the order." });
   }
 };
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
 
 const getMyOrders = async (req, res) => {
   try {
@@ -42,6 +48,9 @@ const getMyOrders = async (req, res) => {
   }
 };
 
+// @desc    Get all orders
+// @route   GET /api/orders
+// @access  Private/Admin
 const getAllOrders = async (req, res) => {
   try {
     const allOrders = await OrderModel.find({})
@@ -57,4 +66,30 @@ const getAllOrders = async (req, res) => {
   }
 };
 
-module.exports = { placeOrder, getAllOrders, getMyOrders };
+// @desc    Update order to delivered
+// @route   GET /api/orders/:id/deliver
+// @access  Private/Admin
+const updateOrderToDelivered = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    const order = await Order.findById(req.params.id);
+    console.log(order);
+    if (order) {
+      order.isDelivered = true;
+      const updatedOrder = await order.save();
+      res.json(updatedOrder);
+    } else {
+      res.status(404);
+      throw new Error("Order not found");
+    }
+  } catch (error) {
+    res.status(400).json({ error: `error.message` });
+  }
+};
+
+module.exports = {
+  placeOrder,
+  getAllOrders,
+  getMyOrders,
+  updateOrderToDelivered,
+};

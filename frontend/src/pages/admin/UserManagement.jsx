@@ -32,17 +32,19 @@ const UserManagement = () => {
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Date Modified</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               {activeUsers.map((user, index) => {
-                const { name, email, _id } = user;
+                const { name, email, _id, updatedAt } = user;
                 return (
                   <tr key={_id}>
                     <th>{index + 1}</th>
                     <td>{name}</td>
                     <td>{email}</td>
+                    <td>{new Date(updatedAt).toString()}</td>
                     <td>
                       <AiFillDelete
                         size={16}

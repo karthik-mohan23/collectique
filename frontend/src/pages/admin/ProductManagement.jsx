@@ -1,6 +1,6 @@
 import { Error, Loader, Modal } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
-import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
@@ -17,9 +17,6 @@ const ProductManagement = () => {
   const handleModel = () => {
     document.getElementById("my_modal_2").showModal();
   };
-  useEffect(() => {
-    handleModel;
-  }, [handleModel]);
 
   const handleDelete = () => {
     console.log("clicked");
@@ -56,7 +53,7 @@ const ProductManagement = () => {
                 return (
                   <tr key={_id}>
                     <th>{index + 1}</th>
-                    <td className="hover:text-secondary-content duration-300">
+                    <td className="hover:text-accent duration-300">
                       <Link to={`${_id}`}>{name}</Link>
                     </td>
 

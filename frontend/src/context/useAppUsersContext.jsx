@@ -17,7 +17,7 @@ export const AppUsersProvider = ({ children }) => {
   const { user } = useAuthContext();
   const fetchAppUsers = async () => {
     // Check if the user is an admin
-    if (user && user.isAdmin) {
+    if (user && user?.isAdmin) {
       dispatch({ type: "FETCH_LOADING" });
       try {
         const response = await axios.get("/api/users");
@@ -32,7 +32,7 @@ export const AppUsersProvider = ({ children }) => {
 
   useEffect(() => {
     fetchAppUsers();
-  }, []);
+  }, [user?.isAdmin]);
 
   return (
     <AppUsersContext.Provider value={{ ...state, dispatch, fetchAppUsers }}>

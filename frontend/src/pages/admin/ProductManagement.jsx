@@ -1,6 +1,5 @@
 import { Error, Loader } from "../../components";
 import { useProductsContext } from "../../context/useProductsContext";
-
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import axios from "axios";
@@ -17,9 +16,7 @@ const ProductManagement = () => {
 
   const handleDelete = async (productId) => {
     try {
-      console.log(productId);
       const response = await axios.delete(`/api/products/${productId}`);
-      console.log(response);
       fetchProducts();
     } catch (error) {
       console.log(error);

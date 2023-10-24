@@ -115,9 +115,8 @@ const updateProduct = async (req, res) => {
 // @access  Private/Admin
 const deleteProduct = async (req, res) => {
   try {
-    console.log(req.params);
     const singleProduct = await ProductsModel.findByIdAndDelete(req.params.id);
-    console.log(singleProduct);
+
     if (singleProduct) {
       res.status(200).json(singleProduct);
     } else {

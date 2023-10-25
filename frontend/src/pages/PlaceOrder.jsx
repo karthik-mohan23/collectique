@@ -41,6 +41,7 @@ const PlaceOrder = () => {
               <th>Name</th>
               <th>Address</th>
               <th>Payment Method</th>
+              <th>Payment Status</th>
               <th>Total Price</th>
             </tr>
           </thead>
@@ -59,14 +60,17 @@ const PlaceOrder = () => {
                 <p className="">Razorpay</p>
               </th>
               <th>
+                <p>Paid</p>
+              </th>
+              <th>
                 <p>₹{amountToPay}</p>
               </th>
             </tr>
           </tbody>
         </table>
       </div>
-      <div className="mx-auto w-full">
-        <button className="btn btn-secondary  " onClick={handlePlaceOrder}>
+      <div className="mx-auto w-full flex justify-end mt-10">
+        <button className="btn btn-secondary" onClick={handlePlaceOrder}>
           Place Order
         </button>
       </div>

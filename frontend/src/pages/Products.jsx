@@ -13,14 +13,7 @@ const cards = [
 ];
 
 const Products = () => {
-  const { loading, error, products } = useProductsContext();
-
-  if (loading) {
-    return <Loader />;
-  }
-  if (error) {
-    return <Error />;
-  }
+  const { loading, error, products, query } = useProductsContext();
 
   const [sort, setSort] = useState("");
   const [filteredProducts, setFilterProducts] = useState(products);
@@ -88,8 +81,21 @@ const Products = () => {
             );
           })}
         </div>
-
-        <ProductCards products={filteredProducts} />
+        {query && (
+          <div className="border border-white my-5">
+            <p className="text-xl">
+              Showing results for{" "}
+              <span className="font-semibold">"{query}"</span>{" "}
+            </p>
+          </div>
+        )}
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <Error />
+        ) : (
+          <ProductCards products={filteredProducts} />
+        )}
       </div>
     </section>
   );

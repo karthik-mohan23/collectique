@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { numberOfItemsInCart, totalPrice } from "../features/cart/cartSlice";
 import { useAuthContext } from "../context/useAuthContext";
 import axios from "axios";
 import { toast } from "sonner";
+import { useProductsContext } from "../context/useProductsContext";
+import Loader from "./Loader";
+import Error from "./Error";
 
 // themes object
 const themes = {
@@ -20,6 +23,25 @@ const getThemeFromLocalStorage = () => {
 };
 
 const Navbar = () => {
+  // search products
+  const navigate = useNavigate();
+  const { loading, error, products, query, setQuery, fetchProducts } =
+    useProductsContext();
+  const [searchProducts, setSearchedProducts] = useState(query);
+  const handleSearchInputChange = (e) => {
+    const newSearchProducts = e.target.value;
+    setSearchedProducts(newSearchProducts);
+    setQuery(newSearchProducts);
+  };
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    navigate("/products");
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, [query]);
+  // end of search
+
   const cartLength = useSelector(numberOfItemsInCart);
   const amountToPay = useSelector(totalPrice);
 
@@ -66,13 +88,17 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden md:block">
-          <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered w-24 md:w-auto"
-            />
-          </div>
+          <form onSubmit={handleSearchSubmit}>
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="Search"
+                className="input input-bordered w-24 md:w-auto"
+                value={searchProducts || ""}
+                onChange={handleSearchInputChange}
+              />
+            </div>
+          </form>
         </div>
         <div className="navbar-end hidden xl:flex ">
           <ul className="menu menu-horizontal px-1 flex items-center">

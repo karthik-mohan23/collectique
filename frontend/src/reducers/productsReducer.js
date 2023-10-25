@@ -8,6 +8,7 @@ const productsReducer = (state, action) => {
   }
   if (action.type === "FETCH_SUCCESS") {
     return {
+      ...state,
       loading: false,
       error: false,
       products: action.payload,

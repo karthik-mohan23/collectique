@@ -4,8 +4,18 @@ const ProductsModel = require("../models/productModel");
 // @route   GET /api/products
 // @access  Public
 const getAllProducts = async (req, res, next) => {
+  const q = req.query.q
+    ? {
+        name: {
+          $regex: req.query.q,
+          $options: "i",
+        },
+      }
+    : {};
+
   try {
-    const allProducts = await ProductsModel.find({}).populate("user", "name");
+    // populate user to get admin name
+    const allProducts = await ProductsModel.find(q).populate("user", "name");
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);

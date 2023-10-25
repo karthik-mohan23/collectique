@@ -60,7 +60,7 @@ const ProductManagement = () => {
                   user,
                   _id: productId,
                 } = product;
-
+                console.log(product);
                 return (
                   <tr key={productId}>
                     <th>{index + 1}</th>

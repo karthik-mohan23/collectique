@@ -39,7 +39,7 @@ import { AppOrdersProvider } from "./context/useAppOrdersContext";
 const App = () => {
   return (
     <BrowserRouter>
-      <Toaster richColors />
+      <Toaster richColors={true} />
       <AuthContextProvider>
         <Provider store={store}>
           <ProductsProvider>

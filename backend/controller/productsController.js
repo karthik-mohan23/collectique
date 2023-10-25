@@ -12,7 +12,6 @@ const getAllProducts = async (req, res, next) => {
         },
       }
     : {};
-  console.log(q);
   try {
     // populate user to get admin name
     const allProducts = await ProductsModel.find(q).populate("user", "name");

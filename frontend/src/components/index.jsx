@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import BannerCarousel from "./BannerCarousel";
 import ProductCards from "./ProductCards";
+import ProductsListings from "./ProductsListings";
 import ProductDetails from "./ProductDetails";
 import Loader from "./Loader";
 import Error from "./Error";
@@ -17,6 +18,7 @@ export {
   BannerCarousel,
   ProductCards,
   ProductDetails,
+  ProductsListings,
   Loader,
   Error,
   EmptyCart,

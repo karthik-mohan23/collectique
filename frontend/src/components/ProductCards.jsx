@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 
 const ProductCards = ({ products }) => {
+  console.log(products, "filtered");
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3  pb-10">
       {products.map((product) => {

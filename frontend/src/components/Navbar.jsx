@@ -6,8 +6,7 @@ import { useAuthContext } from "../context/useAuthContext";
 import axios from "axios";
 import { toast } from "sonner";
 import { useProductsContext } from "../context/useProductsContext";
-import Loader from "./Loader";
-import Error from "./Error";
+import useDebounce from "../hooks/useDebounce";
 
 // themes object
 const themes = {
@@ -27,16 +26,21 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { loading, error, products, query, setQuery, fetchProducts } =
     useProductsContext();
-  const [searchProducts, setSearchedProducts] = useState(query);
+  const [searchProducts, setSearchedProducts] = useState("");
+  // debounce
+  const debouncedValue = useDebounce(searchProducts, 500);
+
   const handleSearchInputChange = (e) => {
     const newSearchProducts = e.target.value;
     setSearchedProducts(newSearchProducts);
-    setQuery(newSearchProducts);
   };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate("/products");
   };
+  useEffect(() => {
+    setQuery(debouncedValue);
+  }, [debouncedValue]);
   useEffect(() => {
     fetchProducts();
   }, [query]);

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Error, Loader, ProductCards } from "../components";
 import { useProductsContext } from "../context/useProductsContext";
 import sale from "../assets/sale.png";
@@ -13,14 +13,23 @@ const cards = [
 ];
 
 const Products = () => {
-  const { loading, error, products, query } = useProductsContext();
+  const { loading, error, products, query, fetchProducts } =
+    useProductsContext();
+
+  if (loading) {
+    return <Loader />;
+  }
 
   const [sort, setSort] = useState("");
   const [filteredProducts, setFilterProducts] = useState(products);
 
+  // useEffect(() => {
+  //   fetchProducts();
+  // }, [setFilterProducts]);
+
   const handleProductsSort = (e) => {
     const { value } = e.target;
-    setSort(value); // Update sort state
+    setSort(value);
 
     if (value === "best-selling") {
       setFilterProducts(products); // Set filtered products to the original array

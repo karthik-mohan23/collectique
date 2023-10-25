@@ -12,10 +12,11 @@ const getAllProducts = async (req, res, next) => {
         },
       }
     : {};
-
+  console.log(q);
   try {
     // populate user to get admin name
     const allProducts = await ProductsModel.find(q).populate("user", "name");
+
     res.status(200).json(allProducts);
   } catch (error) {
     console.log(error);

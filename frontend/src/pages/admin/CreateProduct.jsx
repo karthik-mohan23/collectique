@@ -79,6 +79,8 @@ const CreateProduct = () => {
     }
   };
 
+  console.log(productData);
+
   return (
     <div className="w-full">
       <div className="w-[90%]  mx-auto  min-h-[80vh] pt-10 pb-20">

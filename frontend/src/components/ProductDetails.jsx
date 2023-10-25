@@ -10,13 +10,13 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { RiServiceFill } from "react-icons/ri";
 import StarRating from "./StarRating";
+import { useAuthContext } from "../context/useAuthContext";
 
 const ProductDetails = () => {
-  const [qty, setQty] = useState(1);
-
-  const { id } = useParams();
-
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const { user } = useAuthContext();
+  const [qty, setQty] = useState(1);
 
   const { loading, error, productDetails } = useFetchProductDetails(id);
 
@@ -70,11 +70,13 @@ const ProductDetails = () => {
             <option>3</option>
           </select>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => dispatch(addToCart({ ...productDetails, qty }))}>
-          Add to cart
-        </button>
+        {!user?.isAdmin && (
+          <button
+            className="btn btn-primary"
+            onClick={() => dispatch(addToCart({ ...productDetails, qty }))}>
+            Add to cart
+          </button>
+        )}
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>
         <div className="flex flex-wrap mt-4 gap-8">

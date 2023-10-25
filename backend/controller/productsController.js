@@ -44,6 +44,9 @@ const createProduct = async (req, res) => {
     countInStock,
     image,
   } = req.body;
+  // Convert assured and countInStock to booleans
+  const assuredValue = assured === "true";
+  const countInStockValue = countInStock === "true";
 
   const newProduct = new ProductsModel({
     user: req.user._id,
@@ -52,10 +55,10 @@ const createProduct = async (req, res) => {
     category,
     description,
     price,
-    assured,
+    assured: assuredValue,
     rating,
     numReviews,
-    countInStock,
+    countInStock: countInStockValue,
     image,
   });
 
@@ -82,12 +85,13 @@ const updateProduct = async (req, res) => {
     description,
     assured,
   } = req.body;
-  console.log(req.body);
-  console.log(req.params);
+
+  // Convert assured and countInStock to booleans
+  const assuredValue = assured === "true";
+  const countInStockValue = countInStock === "true";
 
   try {
     const product = await ProductsModel.findById(req.params.id);
-    console.log(product);
 
     if (product) {
       product.name = name;
@@ -96,8 +100,8 @@ const updateProduct = async (req, res) => {
       product.image = image;
       product.seller = seller;
       product.category = category;
-      product.countInStock = countInStock;
-      product.assured = assured;
+      product.countInStock = countInStockValue; // Use the converted value
+      product.assured = assuredValue; // Use the converted value
 
       const updatedProduct = await product.save();
       res.status(201).json(updatedProduct);

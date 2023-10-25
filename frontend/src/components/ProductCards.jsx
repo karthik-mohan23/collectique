@@ -20,11 +20,11 @@ const ProductCards = ({ products }) => {
                   alt={name}
                   className="h-52 object-cover w-full  px-3 rounded-t-2xl "
                 />
-                {assured === "false" ? null : (
+                {assured ? (
                   <p className="absolute top-0 right-0 bg-secondary text-primary-content rounded-md px-2 py-1">
                     assured
                   </p>
-                )}
+                ) : null}
               </div>
               <div className="py-5 ps-5">
                 {/* rating */}

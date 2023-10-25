@@ -83,7 +83,7 @@ const MyOrders = () => {
                       })}
                     </p>
                   </td>
-                  <td>{isDelivered ? `Delivered` : `Not delivered`}</td>
+                  <td>{isDelivered ? `Delivered` : `In Transit`}</td>
                   <td>
                     {isDelivered ? (
                       <p className="">
@@ -95,7 +95,7 @@ const MyOrders = () => {
                         })}
                       </p>
                     ) : (
-                      `Not Received`
+                      `Awaiting Delivery`
                     )}
                   </td>
                 </tr>

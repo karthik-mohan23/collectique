@@ -37,7 +37,9 @@ const placeOrder = async (req, res) => {
 const getMyOrders = async (req, res) => {
   try {
     const userId = req.user._id;
-    const myOrders = await OrderModel.find({ user: userId });
+    const myOrders = await OrderModel.find({ user: userId }).sort({
+      createdAt: -1,
+    });
     if (myOrders) {
       res.status(200).json(myOrders);
     } else {

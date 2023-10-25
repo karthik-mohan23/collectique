@@ -7,6 +7,7 @@ import {
   totalPrice,
 } from "../features/cart/cartSlice";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 const Cart = () => {
   const { cartItems } = useSelector((store) => store.cart);
@@ -17,6 +18,11 @@ const Cart = () => {
   if (cartItems.length === 0) {
     return <EmptyCart />;
   }
+
+  const handleRemoveItemFromCart = (id) => {
+    dispatch(removeItemsFromCart(id));
+    toast.success("Item Removed. What's Your Next Pick?");
+  };
 
   return (
     <div className="w-[90%] max-w-5xl mx-auto py-16 flex flex-wrap-reverse justify-between ">
@@ -62,7 +68,7 @@ const Cart = () => {
                     <AiFillDelete
                       size={18}
                       className="cursor-pointer hover:text-accent-focus"
-                      onClick={() => dispatch(removeItemsFromCart(_id))}
+                      onClick={() => handleRemoveItemFromCart(_id)}
                     />
                   </th>
                 </tr>

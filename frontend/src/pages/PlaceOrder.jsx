@@ -7,6 +7,7 @@ import {
 } from "../features/cart/cartSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const PlaceOrder = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const PlaceOrder = () => {
         localStorage.removeItem("orderDetails");
         dispatch(clearCart());
         navigate("/confirmation");
+        toast.success("Thank You for Your Order!");
       } else {
         console.log("error placing order");
       }

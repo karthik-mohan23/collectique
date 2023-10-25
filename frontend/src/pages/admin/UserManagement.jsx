@@ -2,6 +2,7 @@ import axios from "axios";
 import { Error, Loader, Modal } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 import { AiFillDelete } from "react-icons/ai";
+import { toast } from "sonner";
 
 const UserManagement = () => {
   // Users
@@ -18,12 +19,14 @@ const UserManagement = () => {
     document.getElementById("my_modal_2").showModal();
   };
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async (userId, name) => {
     try {
       const response = await axios.delete(`/api/users/${userId}`);
       fetchAppUsers();
+      toast.success(`User ${name} deleted`);
     } catch (error) {
       console.log(error);
+      toast.error(`Couldn't delete User ${name}`);
     }
   };
   const activeUsers = appUsers?.filter((user) => !user.isAdmin);
@@ -69,7 +72,7 @@ const UserManagement = () => {
                       <Modal
                         title="Delete this user?"
                         message="Press Confirm to delete this user?"
-                        onConfirm={() => handleDelete(userId)}
+                        onConfirm={() => handleDelete(userId, name)}
                         btnText="Confirm"
                       />
                     </td>

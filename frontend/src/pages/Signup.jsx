@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "./context/useAuthContext";
+import { useAuthContext } from "../context/useAuthContext";
+import { toast } from "sonner";
 
 const Signup = () => {
   const [signupForm, setSignupForm] = useState({
@@ -29,7 +30,6 @@ const Signup = () => {
       return;
     }
     try {
-      console.log(signupForm);
       const response = await axios.post("/api/users", signupForm);
       // set user details to global state
       setUser(response.data);
@@ -45,8 +45,9 @@ const Signup = () => {
       });
       // navigate back to home
       navigate("/");
+      toast.success(`Happy Shopping, ${response.data.name}!`);
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 

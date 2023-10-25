@@ -1,8 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useProductsContext } from "../../context/useProductsContext";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const { loading, error, products, fetchProducts } = useProductsContext();
 
   const [productData, setProductData] = useState({
@@ -30,13 +33,19 @@ const CreateProduct = () => {
 
   const handleProductDataSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("/api/products", productData);
-
+      console.log(response);
       if (response.status === 201) {
-        console.log("Product created successfully!");
-        console.log(response);
+        fetchProducts();
+
+        try {
+          await navigate("/admin/product-management");
+        } catch (error) {
+          console.error("Error navigating:", error);
+        }
+
+        toast.success("Product created successfully!");
         setProductData({
           name: "",
           seller: "",
@@ -49,37 +58,31 @@ const CreateProduct = () => {
           countInStock: false,
           image: null,
         });
-        fetchProducts();
       } else {
-        console.error("Failed to create the product");
+        toast.error("Failed to create the product");
       }
     } catch (error) {
-      console.error("An error occurred while creating the product:", error);
+      toast.error("An error occurred while creating the product");
     }
   };
 
   const handleUploadImage = async (e) => {
     const file = e.target.files[0]; // Get the selected file
-    console.log(file);
     if (file) {
       // Create a new FormData object to send only the image
       const formData = new FormData();
       formData.append("image", file);
-      console.log(formData, "formData");
 
       try {
         const response = await axios.post("/api/upload", formData);
-        console.log("Image uploaded successfully!");
+        toast.success("Image uploaded successfully!");
         // Update the product data with the selected image
-        console.log(response);
         setProductData({ ...productData, image: response.data.image });
       } catch (error) {
-        console.error("An error occurred while uploading the image:", error);
+        toast.error("An error occurred while uploading the image");
       }
     }
   };
-
-  console.log(productData);
 
   return (
     <div className="w-full">

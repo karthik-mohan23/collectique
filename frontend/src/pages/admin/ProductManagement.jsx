@@ -3,6 +3,7 @@ import { useProductsContext } from "../../context/useProductsContext";
 import { Link } from "react-router-dom";
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import axios from "axios";
+import { toast } from "sonner";
 
 const ProductManagement = () => {
   const { loading, error, products, fetchProducts } = useProductsContext();
@@ -18,8 +19,10 @@ const ProductManagement = () => {
     try {
       const response = await axios.delete(`/api/products/${productId}`);
       fetchProducts();
+      toast.success("Product deleted successfully!");
     } catch (error) {
       console.log(error);
+      toast.success("Couldn't delete product!");
     }
   };
 

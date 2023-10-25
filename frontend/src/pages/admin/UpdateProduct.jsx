@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetchProductDetails from "../../hooks/useFetchProductDetails";
 import { Error, Loader } from "../../components";
 import axios from "axios";
 import { useProductsContext } from "../../context/useProductsContext";
+import { toast } from "sonner";
 
 const UpdateProduct = () => {
+  const navigate = useNavigate();
+
   const { fetchProducts } = useProductsContext();
 
   const [updateProductData, setUpdateProductData] = useState({
@@ -54,24 +57,20 @@ const UpdateProduct = () => {
   };
   const handleUploadImage = async (e) => {
     const file = e.target.files[0]; // Get the selected file
-    console.log(file);
     if (file) {
       // Create a new FormData object to send only the image
       const formData = new FormData();
       formData.append("image", file);
-      console.log(formData, "formData");
-
       try {
         const response = await axios.post("/api/upload", formData);
-        console.log("Image uploaded successfully!");
         // Update the product data with the selected image
-        console.log(response);
         setUpdateProductData({
           ...updateProductData,
           image: response.data.image,
         });
+        toast.success("Image uploaded successfully!");
       } catch (error) {
-        console.error("An error occurred while uploading the image:", error);
+        toast.error("An error occurred while uploading the image");
       }
     }
   };
@@ -82,10 +81,16 @@ const UpdateProduct = () => {
         `/api/products/${productId}`,
         updateProductData
       );
-
       if (response.status === 201) {
-        console.log("Product created successfully!");
-        console.log(response);
+        fetchProducts();
+
+        try {
+          await navigate("/admin/product-management");
+        } catch (error) {
+          console.error("Error navigating:", error);
+        }
+
+        toast.success("Product updated successfully!");
         setUpdateProductData({
           name: "",
           seller: "",
@@ -98,12 +103,11 @@ const UpdateProduct = () => {
           countInStock: false,
           image: null,
         });
-        fetchProducts();
       } else {
-        console.error("Failed to create the product");
+        toast.error("Failed to update the product");
       }
     } catch (error) {
-      console.error("An error occurred while creating the product:", error);
+      toast.error("An error occurred while updating the product");
     }
   };
 

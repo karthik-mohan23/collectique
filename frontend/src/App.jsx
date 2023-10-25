@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import store from "./utils/store";
 import { Provider } from "react-redux";
 import { ProductsProvider } from "./context/useProductsContext";
+// toast
+import { Toaster } from "sonner";
 
 import {
   AdminDashboard,
@@ -37,6 +39,7 @@ import { AppOrdersProvider } from "./context/useAppOrdersContext";
 const App = () => {
   return (
     <BrowserRouter>
+      <Toaster richColors />
       <AuthContextProvider>
         <Provider store={store}>
           <ProductsProvider>
@@ -44,6 +47,7 @@ const App = () => {
             <AppUsersProvider>
               {/* All Orders context */}
               <AppOrdersProvider>
+                <Toaster />
                 <Navbar />
                 <Routes>
                   <Route path="/" element={<Home />} />

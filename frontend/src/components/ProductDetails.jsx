@@ -11,6 +11,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { RiServiceFill } from "react-icons/ri";
 import StarRating from "./StarRating";
 import { useAuthContext } from "../context/useAuthContext";
+import { toast } from "sonner";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,10 @@ const ProductDetails = () => {
         {!user?.isAdmin && (
           <button
             className="btn btn-primary"
-            onClick={() => dispatch(addToCart({ ...productDetails, qty }))}>
+            onClick={() => {
+              dispatch(addToCart({ ...productDetails, qty }));
+              toast.success("Great Choice! Keep Shopping!");
+            }}>
             Add to cart
           </button>
         )}

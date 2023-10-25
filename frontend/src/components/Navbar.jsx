@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { numberOfItemsInCart, totalPrice } from "../features/cart/cartSlice";
 import { useAuthContext } from "../context/useAuthContext";
 import axios from "axios";
+import { toast } from "sonner";
 
 // themes object
 const themes = {
@@ -27,6 +28,7 @@ const Navbar = () => {
   const handleLogout = () => {
     axios.post("/api/users/logout");
     setUser(localStorage.removeItem("userDetails"));
+    toast.success(`See You Again Soon!`);
   };
 
   useEffect(() => {

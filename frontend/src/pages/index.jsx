@@ -2,7 +2,7 @@ import Home from "./Home";
 import Products from "./Products";
 import Cart from "./Cart";
 import Login from "./Login";
-import Signup from "../Signup";
+import Signup from "./Signup";
 import ShippingAddressPage from "./ShippingAddressPage";
 import PaymentPage from "./PaymentPage";
 import PlaceOrder from "./PlaceOrder";

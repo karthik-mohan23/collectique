@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Error, Loader, Modal } from "../../components";
+import { Error, Loader } from "../../components";
 import { useAppUsersContext } from "../../context/useAppUsersContext";
 import { AiFillDelete } from "react-icons/ai";
 import { toast } from "sonner";
@@ -14,10 +14,6 @@ const UserManagement = () => {
   if (appUsersError) {
     return <Error />;
   }
-
-  const handleModel = () => {
-    document.getElementById("my_modal_2").showModal();
-  };
 
   const handleDelete = async (userId, name) => {
     try {
@@ -66,14 +62,7 @@ const UserManagement = () => {
                       <AiFillDelete
                         size={16}
                         className="cursor-pointer hover:text-red-500 duration-300"
-                        onClick={handleModel}
-                      />
-                      {/* modal */}
-                      <Modal
-                        title="Delete this user?"
-                        message="Press Confirm to delete this user?"
-                        onConfirm={() => handleDelete(userId, name)}
-                        btnText="Confirm"
+                        onClick={() => handleDelete(userId, name)}
                       />
                     </td>
                   </tr>

@@ -41,7 +41,9 @@ const MyOrders = () => {
               <th>Address</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Ordered Date</th>
               <th>Status</th>
+              <th>Order Received Date</th>
             </tr>
           </thead>
           <tbody>
@@ -54,6 +56,8 @@ const MyOrders = () => {
                 paymentMethod,
                 totalPrice,
                 isDelivered,
+                createdAt,
+                updatedAt,
               } = item;
               return (
                 <tr key={_id}>
@@ -66,10 +70,34 @@ const MyOrders = () => {
                     <br />
                   </td>
                   <td>{cartItems.length}</td>
-                  <th>
+                  <td>
                     <p className="">₹{totalPrice}</p>
-                  </th>
-                  {isDelivered ? <th>Delivered</th> : <th>Not delivered</th>}
+                  </td>
+                  <td>
+                    <p className="">
+                      {new Date(createdAt).toLocaleDateString("en-US", {
+                        weekday: "long",
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </p>
+                  </td>
+                  <td>{isDelivered ? `Delivered` : `Not delivered`}</td>
+                  <td>
+                    {isDelivered ? (
+                      <p className="">
+                        {new Date(updatedAt).toLocaleDateString("en-US", {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    ) : (
+                      `Not Received`
+                    )}
+                  </td>
                 </tr>
               );
             })}

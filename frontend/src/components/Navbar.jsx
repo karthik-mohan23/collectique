@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useProductsContext } from "../context/useProductsContext";
 import useDebounce from "../hooks/useDebounce";
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 // themes object
 const themes = {
@@ -45,6 +46,9 @@ const Navbar = () => {
     fetchProducts();
   }, [query]);
   // end of search
+
+  // online status custom hook
+  const onlineStatus = useOnlineStatus();
 
   const cartLength = useSelector(numberOfItemsInCart);
   const amountToPay = useSelector(totalPrice);
@@ -140,7 +144,12 @@ const Navbar = () => {
             {user && !user.isAdmin ? (
               <li tabIndex={0}>
                 <details>
-                  <summary>{user?.name?.split(" ")[0]}</summary>
+                  <summary
+                    className={
+                      onlineStatus ? `online avatar rounded-full` : ""
+                    }>
+                    {user?.name?.split(" ")[0]}
+                  </summary>
                   <ul className="p-2">
                     <li>
                       <Link to="/my-orders">Orders</Link>
@@ -251,7 +260,12 @@ const Navbar = () => {
               {user && !user.isAdmin ? (
                 <li tabIndex={0}>
                   <details>
-                    <summary>{user?.name?.split(" ")[0]}</summary>
+                    <summary
+                      className={
+                        onlineStatus ? `online avatar rounded-full` : ""
+                      }>
+                      {user?.name?.split(" ")[0]}
+                    </summary>
                     <ul className="p-2">
                       <li>
                         <Link to="/my-orders">Orders</Link>

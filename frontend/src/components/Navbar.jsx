@@ -144,10 +144,12 @@ const Navbar = () => {
             {user && !user.isAdmin ? (
               <li tabIndex={0}>
                 <details>
-                  <summary
-                    className={
-                      onlineStatus ? `online avatar rounded-full` : ""
-                    }>
+                  <summary className="relative">
+                    {onlineStatus ? (
+                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                    ) : (
+                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                    )}
                     {user?.name?.split(" ")[0]}
                   </summary>
                   <ul className="p-2">
@@ -165,7 +167,14 @@ const Navbar = () => {
             {user && user.isAdmin ? (
               <li>
                 <details>
-                  <summary>{user?.name?.split(" ")[0]}</summary>
+                  <summary className="relative">
+                    {onlineStatus ? (
+                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                    ) : (
+                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                    )}
+                    {user?.name?.split(" ")[0]}
+                  </summary>
                   <ul className="p-2 bg-base-100">
                     <li>
                       <Link to="/admin/admin-dashboard">Dashboard</Link>
@@ -260,10 +269,12 @@ const Navbar = () => {
               {user && !user.isAdmin ? (
                 <li tabIndex={0}>
                   <details>
-                    <summary
-                      className={
-                        onlineStatus ? `online avatar rounded-full` : ""
-                      }>
+                    <summary className="relative">
+                      {onlineStatus ? (
+                        <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      ) : (
+                        <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      )}
                       {user?.name?.split(" ")[0]}
                     </summary>
                     <ul className="p-2">

@@ -23,13 +23,20 @@ app.use("/uploads", express.static("uploads"));
 const productsRoute = require("./routes/productsRoute");
 const usersRoute = require("./routes/usersRoute");
 const orderRoute = require("./routes/orderRoute");
+const paymentRoute = require("./routes/paymentRoute");
 // upload routes
 const uploadRoutes = require("./routes/uploadRoutes");
 
 app.use("/api/products", productsRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/orders", orderRoute);
+app.use("/api/payment", paymentRoute);
 app.use("/api/upload", uploadRoutes);
+
+// razorpay key
+app.get("/api/razorpay", (req, res) =>
+  res.send({ clientId: process.env.KEY_ID })
+);
 
 app.listen(process.env.PORT, () => {
   configDB();

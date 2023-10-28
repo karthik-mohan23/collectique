@@ -146,9 +146,9 @@ const Navbar = () => {
                 <details>
                   <summary className="relative">
                     {onlineStatus ? (
-                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-0 right-0"></span>
                     ) : (
-                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 right-0"></span>
                     )}
                     {user?.name?.split(" ")[0]}
                   </summary>
@@ -169,9 +169,9 @@ const Navbar = () => {
                 <details>
                   <summary className="relative">
                     {onlineStatus ? (
-                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 right-0"></span>
                     ) : (
-                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                      <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 right-0"></span>
                     )}
                     {user?.name?.split(" ")[0]}
                   </summary>
@@ -271,9 +271,9 @@ const Navbar = () => {
                   <details>
                     <summary className="relative">
                       {onlineStatus ? (
-                        <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                        <span className="bg-green-400 w-2 h-2 rounded-full absolute top-1/3 right-0"></span>
                       ) : (
-                        <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 left-0"></span>
+                        <span className="bg-red-500 w-2 h-2 rounded-full absolute top-1/3 right-0"></span>
                       )}
                       {user?.name?.split(" ")[0]}
                     </summary>

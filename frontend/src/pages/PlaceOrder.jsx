@@ -60,7 +60,6 @@ const PlaceOrder = () => {
   };
 
   // razorpay
-
   const initPayment = (data) => {
     const options = {
       key: razorpayKey,
@@ -74,12 +73,10 @@ const PlaceOrder = () => {
           const { data } = await axios.post(verifyUrl, response);
           if (data.message === "Payment verified successfully") {
             toast.success("Payment successful");
-            // Then, place the order
             await handlePlaceOrder();
           } else {
+            toast.error("Error Processing Payment.");
             console.log(error);
-            // Handle the case where payment verification failed
-            // You can display an error message or take appropriate action
           }
         } catch (error) {
           console.log(error);
@@ -102,17 +99,6 @@ const PlaceOrder = () => {
       console.log(error);
     }
   };
-
-  // const handlePlaceOrderAndPayment = async () => {
-  //   try {
-  //     // First, initiate payment
-  //     await handlePayment();
-
-  //   } catch (error) {
-  //     // Handle errors if necessary
-  //     console.log(error);
-  //   }
-  // };
 
   if (isLoading) {
     return <Loader />;

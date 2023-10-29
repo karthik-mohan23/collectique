@@ -11,7 +11,7 @@ const OrderRecords = () => {
   if (appOrdersError) {
     return <Error />;
   }
-
+  console.log(appOrders);
   const handleIsDelivered = async (orderId) => {
     try {
       const response = await axios.put(`/api/orders/${orderId}/deliver`);
@@ -55,7 +55,7 @@ const OrderRecords = () => {
                 return (
                   <tr key={orderId}>
                     <th>{index + 1}</th>
-                    <td>{user.name}</td>
+                    <td>{user?.name}</td>
                     <td>
                       <p>{shippingAddress.address}</p>
                       <p>{shippingAddress.city}</p>

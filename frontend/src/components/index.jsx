@@ -10,6 +10,7 @@ import Footer from "./Footer";
 import Modal from "./Modal";
 import StarRating from "./StarRating";
 import PaymentAnimation from "./PaymentAnimation";
+import BasketAnimation from "./BasketAnimation";
 
 import PrivateUserRoutes from "./PrivateUserRoutes";
 import AdminRoute from "./AdminRoute";
@@ -27,6 +28,7 @@ export {
   StarRating,
   Footer,
   PaymentAnimation,
+  BasketAnimation,
   PrivateUserRoutes,
   AdminRoute,
 };

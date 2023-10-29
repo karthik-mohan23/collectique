@@ -59,7 +59,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="w-[90%] mx-auto  min-h-[80vh] grid place-content-center">
+      <div className="w-[90%] mx-auto  min-h-[90vh] grid place-content-center">
         <form className="card-body w-96 shadow-2xl" onSubmit={submitLoginForm}>
           <div className="form-control">
             <label className="label">

@@ -13,6 +13,8 @@ import StarRating from "./StarRating";
 import { useAuthContext } from "../context/useAuthContext";
 import { toast } from "sonner";
 import { FaStar } from "react-icons/fa";
+import axios from "axios";
+import { useProductsContext } from "../context/useProductsContext";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -20,6 +22,12 @@ const ProductDetails = () => {
   const { user } = useAuthContext();
   const [qty, setQty] = useState(1);
   const { loading, error, productDetails } = useFetchProductDetails(id);
+  // to refetch data again after submitting review
+  const {
+    fetchProducts,
+    loading: productsLoading,
+    error: productsError,
+  } = useProductsContext();
 
   // rating
   const [starRating, setStarRating] = useState(1);
@@ -28,17 +36,48 @@ const ProductDetails = () => {
     setStarRating(selectedRating);
   };
   // end of rating
+  // comment
+  const [comment, setComment] = useState("");
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+  };
+  // end of comment
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
 
-  if (loading) {
+    const myReview = {
+      starRating,
+      comment,
+    };
+
+    try {
+      const response = await axios.post(
+        `/api/products/${productId}/reviews`,
+        myReview
+      );
+
+      // Reset the form fields
+      setStarRating(1);
+      setComment("");
+      // refetch
+      fetchProducts();
+      console.log("Review submitted successfully:", response.data);
+      toast.success("Review submitted successfully");
+    } catch (error) {
+      toast.error("Error submitting review");
+      console.error("Error submitting review:", error);
+    }
+  };
+
+  if (loading || productsLoading) {
     return <Loader />;
   }
 
-  if (error) {
+  if (error || productsError) {
     return <Error />;
   }
-
   const {
-    _id,
+    _id: productId,
     assured,
     category,
     countInStock,
@@ -49,7 +88,9 @@ const ProductDetails = () => {
     price,
     rating,
     seller,
+    reviews,
   } = productDetails;
+  console.log(productDetails, user?.name);
 
   return (
     <div className="flex flex-wrap justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
@@ -63,7 +104,7 @@ const ProductDetails = () => {
         <h2 className="text-2xl md:text-3xl font-medium">{name}</h2>
         <div className="divider"></div>
         <StarRating stars={rating} reviewsCount={numReviews} />
-        <p>{countInStock} in stock</p>
+        <p className="text-accent opacity-80 my-1">{countInStock} in stock</p>
         <p className="my-4 font-semibold text-xl text-orange-500">₹ {price}</p>
         {/* select input */}
         <div className="form-control w-full max-w-xs mb-6">
@@ -107,17 +148,19 @@ const ProductDetails = () => {
         <div>
           <div className="flex items-center gap-5 flex-wrap pt-3 mb-10">
             <h3 className="text-xl font-medium">Ratings & Reviews</h3>
-            <p className="bg-green-600 text-[1rem]  flex items-center rounded-full gap-1 font-semibold text-white py-1 px-2">
-              2.5
+            <p className="bg-green-600 text-xs  flex items-center rounded-full gap-1 font-semibold text-white py-1 px-2">
+              {rating}
               <FaStar size={15} />
             </p>
-            <p className="text-xs opacity-70">11 ratings and 2 reviews</p>
+            <p className="text-xs opacity-70">
+              {rating} ratings and {numReviews} reviews
+            </p>
           </div>
           {/* user review */}
           <div className="flex flex-col gap-4">
             {/* add rating */}
             <div>
-              <h3 className="text-xl">Add a review</h3>
+              <h3 className="text-[1rem]">Add a review</h3>
             </div>
             {/* end of add rating */}
             {/* star rating component */}
@@ -168,8 +211,36 @@ const ProductDetails = () => {
             {/* write review */}
             <textarea
               className="textarea textarea-secondary"
+              name="comment"
+              value={comment}
+              onChange={handleCommentChange}
               placeholder="write a review"></textarea>
+            <button className="btn btn-accent" onClick={handleReviewSubmit}>
+              Submit
+            </button>
             {/* end of write review */}
+            {/* comments */}
+            <h4 className="text-[1rem] font-bold pt-5 opacity-75">
+              Top reviews
+            </h4>
+            {reviews?.length > 0
+              ? reviews.map((review) => {
+                  const { _id, name, rating, comment } = review;
+                  return (
+                    <div key={_id}>
+                      <div className="divider"></div>
+                      <div className="flex items-center gap-3 mb-2">
+                        <p className="bg-green-600 text-[0.7rem]  flex items-center rounded-lg gap-1 font-semibold text-white py-1 px-2">
+                          {rating} <FaStar />
+                        </p>
+                        <h4 className="font-bold">{name}</h4>
+                      </div>
+
+                      <p>{comment}</p>
+                    </div>
+                  );
+                })
+              : ""}
           </div>
           {/* end of user review */}
         </div>

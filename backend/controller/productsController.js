@@ -145,7 +145,7 @@ const deleteProduct = async (req, res) => {
 // @route   POST /api/products/:id/reviews
 // @access  Private
 const createProductReview = async (req, res) => {
-  const { rating, comment } = req.body;
+  const { starRating: rating, comment } = req.body;
   const productId = req.params.id;
   const currentUser = req.user;
 
@@ -186,7 +186,7 @@ const createProductReview = async (req, res) => {
       0
     );
     product.rating = totalRating / product.reviews.length;
-
+    console.log(product, "product");
     await product.save();
     res.status(201).json({ message: "Review added" });
   } catch (error) {

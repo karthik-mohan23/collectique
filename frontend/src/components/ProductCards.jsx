@@ -3,7 +3,7 @@ import StarRating from "./StarRating";
 
 const ProductCards = ({ products }) => {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3  pb-10">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3 pt-5 pb-10">
       {products.map((product) => {
         const { _id, name, assured, image, price, rating, numReviews } =
           product;

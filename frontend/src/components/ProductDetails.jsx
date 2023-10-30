@@ -12,14 +12,22 @@ import { RiServiceFill } from "react-icons/ri";
 import StarRating from "./StarRating";
 import { useAuthContext } from "../context/useAuthContext";
 import { toast } from "sonner";
+import { FaStar } from "react-icons/fa";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { user } = useAuthContext();
   const [qty, setQty] = useState(1);
-
   const { loading, error, productDetails } = useFetchProductDetails(id);
+
+  // rating
+  const [starRating, setStarRating] = useState(1);
+  const handleRatingChange = (event) => {
+    const selectedRating = parseInt(event.target.value, 10);
+    setStarRating(selectedRating);
+  };
+  // end of rating
 
   if (loading) {
     return <Loader />;
@@ -83,7 +91,7 @@ const ProductDetails = () => {
         )}
         <div className="divider"></div>
         <p className="max-w-md">{description}</p>
-        <div className="flex flex-wrap mt-4 gap-8">
+        <div className="flex flex-wrap mt-4 mb-8 gap-8">
           <p className="flex flex-col gap-1 items-center font-medium text-amber-600  opacity-90">
             <TbTruckDelivery size={25} /> Free Delivery*
           </p>
@@ -94,6 +102,78 @@ const ProductDetails = () => {
             <RiServiceFill size={25} /> 10 days return policy
           </p>
         </div>
+        <div className="divider"></div>
+        {/* rating*/}
+        <div>
+          <div className="flex items-center gap-5 flex-wrap pt-3 mb-10">
+            <h3 className="text-xl font-medium">Ratings & Reviews</h3>
+            <p className="bg-green-600  flex items-center rounded-full gap-1 font-semibold text-white py-1 px-2">
+              2.5
+              <FaStar size={15} />
+            </p>
+            <p className="text-xs opacity-70">11 ratings and 2 reviews</p>
+          </div>
+          {/* user review */}
+          <div className="flex flex-col gap-3">
+            {/* add rating */}
+            <div>
+              <h3 className="text-xl">Add a review</h3>
+            </div>
+            {/* end of add rating */}
+            {/* star rating component */}
+            <div className="rating">
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                value="1"
+                checked={starRating === 1}
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                value="2"
+                checked={starRating === 2}
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                value="3"
+                checked={starRating === 3}
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                value="4"
+                checked={starRating === 4}
+                onChange={handleRatingChange}
+              />
+              <input
+                type="radio"
+                name="rating-2"
+                className="mask mask-star-2 bg-orange-400"
+                value="5"
+                checked={starRating === 5}
+                onChange={handleRatingChange}
+              />
+            </div>
+            {/* end of star rating */}
+
+            {/* write review */}
+            <textarea
+              className="textarea textarea-secondary"
+              placeholder="write a review"></textarea>
+            {/* end of write review */}
+          </div>
+          {/* end of user review */}
+        </div>
+        {/* end of rating */}
       </div>
     </div>
   );

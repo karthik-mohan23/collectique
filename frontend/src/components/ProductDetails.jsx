@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../features/cart/cartSlice";
@@ -14,21 +14,14 @@ import { useAuthContext } from "../context/useAuthContext";
 import { toast } from "sonner";
 import { FaStar } from "react-icons/fa";
 import axios from "axios";
-import { useProductsContext } from "../context/useProductsContext";
 
 const ProductDetails = () => {
-  const [shouldRefetch, setShouldRefetch] = useState(false);
+  const [key, setKey] = useState(0);
   const dispatch = useDispatch();
   const { id } = useParams();
   const { user } = useAuthContext();
   const [qty, setQty] = useState(1);
-  const { loading, error, productDetails } = useFetchProductDetails(id);
-  // to refetch data again after submitting review
-  // const {
-  //   fetchProducts,
-  //   loading: productsLoading,
-  //   error: productsError,
-  // } = useProductsContext();
+  const { loading, error, productDetails } = useFetchProductDetails(id, key);
 
   // rating
   const [starRating, setStarRating] = useState(1);
@@ -53,30 +46,20 @@ const ProductDetails = () => {
 
     try {
       const response = await axios.post(
-        `/api/products/${productId}/reviews`,
+        `/api/products/${id}/reviews`,
         myReview
       );
 
       // Reset the form fields
       setStarRating(1);
       setComment("");
-      // refetch
-      setShouldRefetch(true);
-      console.log("Review submitted successfully:", response.data);
+      // Update the key to trigger a re-fetch
+      setKey((prevKey) => prevKey + 1);
       toast.success("Review submitted successfully");
     } catch (error) {
       toast.error("Error submitting review");
-      console.error("Error submitting review:", error);
     }
   };
-  useEffect(() => {
-    if (shouldRefetch) {
-      // Call your fetch hook here
-      useFetchProductDetails(id);
-      // Reset the shouldRefetch state
-      setShouldRefetch(false);
-    }
-  }, [shouldRefetch, id]);
 
   if (loading) {
     return <Loader />;
@@ -86,7 +69,7 @@ const ProductDetails = () => {
     return <Error />;
   }
   const {
-    _id: productId,
+    _id,
     assured,
     category,
     countInStock,
@@ -99,7 +82,6 @@ const ProductDetails = () => {
     seller,
     reviews,
   } = productDetails;
-  console.log(productDetails, user?.name);
 
   return (
     <div className="flex  justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">

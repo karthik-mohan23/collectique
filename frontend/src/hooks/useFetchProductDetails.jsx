@@ -8,7 +8,7 @@ const initialState = {
   productDetails: {},
 };
 
-const useFetchProductDetails = (productId) => {
+const useFetchProductDetails = (productId, key) => {
   const [state, dispatch] = useReducer(productDetailsReducer, initialState);
 
   const fetchProductDetails = async () => {
@@ -23,7 +23,7 @@ const useFetchProductDetails = (productId) => {
 
   useEffect(() => {
     fetchProductDetails();
-  }, [productId]);
+  }, [productId, key]);
 
   return state;
 };

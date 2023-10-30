@@ -151,7 +151,7 @@ const createProductReview = async (req, res) => {
 
   try {
     const product = await ProductsModel.findById(productId);
-    console.log(product, "product");
+
     if (!product) {
       res.status(404).json({ error: "Product not found" });
       return;

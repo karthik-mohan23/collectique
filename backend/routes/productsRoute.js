@@ -7,12 +7,16 @@ const {
   createProduct,
   updateProduct,
   deleteProduct,
+  createProductReview,
 } = require("../controller/productsController");
 
 // to get all products
 router.get("/", getAllProducts);
 // to get single product
 router.get("/:id", getSingleProduct);
+
+// to post review
+router.post("/:id/reviews", protect, createProductReview);
 
 // admin
 router.post("/", protect, admin, createProduct);

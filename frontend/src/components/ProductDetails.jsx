@@ -107,14 +107,14 @@ const ProductDetails = () => {
         <div>
           <div className="flex items-center gap-5 flex-wrap pt-3 mb-10">
             <h3 className="text-xl font-medium">Ratings & Reviews</h3>
-            <p className="bg-green-600  flex items-center rounded-full gap-1 font-semibold text-white py-1 px-2">
+            <p className="bg-green-600 text-[1rem]  flex items-center rounded-full gap-1 font-semibold text-white py-1 px-2">
               2.5
               <FaStar size={15} />
             </p>
             <p className="text-xs opacity-70">11 ratings and 2 reviews</p>
           </div>
           {/* user review */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-4">
             {/* add rating */}
             <div>
               <h3 className="text-xl">Add a review</h3>

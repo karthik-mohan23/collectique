@@ -141,10 +141,64 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+// @desc    Create new review
+// @route   POST /api/products/:id/reviews
+// @access  Private
+const createProductReview = async (req, res) => {
+  const { rating, comment } = req.body;
+  const productId = req.params.id;
+  const currentUser = req.user;
+
+  console.log(req.body, "body");
+  console.log(req.params, "params");
+  console.log(req.user, "user");
+
+  try {
+    const product = await ProductsModel.findById(productId);
+    console.log(product, "product");
+    if (!product) {
+      res.status(404).json({ error: "Product not found" });
+      return;
+    }
+
+    const userAlreadyReviewed = product.reviews.some(
+      // review.user might be an ObjectId while currentUser._id is a string
+      (review) => review.user.toString() === currentUser._id.toString()
+    );
+
+    if (userAlreadyReviewed) {
+      res.status(400).json({ error: "Product already reviewed" });
+      return;
+    }
+
+    const newReview = {
+      name: currentUser.name,
+      rating: Number(rating),
+      comment,
+      user: currentUser._id,
+    };
+
+    product.reviews.push(newReview);
+    product.numReviews = product.reviews.length;
+
+    const totalRating = product.reviews.reduce(
+      (acc, review) => acc + review.rating,
+      0
+    );
+    product.rating = totalRating / product.reviews.length;
+
+    await product.save();
+    res.status(201).json({ message: "Review added" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 module.exports = {
   getAllProducts,
   getSingleProduct,
   createProduct,
   updateProduct,
   deleteProduct,
+  createProductReview,
 };

@@ -149,10 +149,6 @@ const createProductReview = async (req, res) => {
   const productId = req.params.id;
   const currentUser = req.user;
 
-  console.log(req.body, "body");
-  console.log(req.params, "params");
-  console.log(req.user, "user");
-
   try {
     const product = await ProductsModel.findById(productId);
     console.log(product, "product");
@@ -185,8 +181,7 @@ const createProductReview = async (req, res) => {
       (acc, review) => acc + review.rating,
       0
     );
-    product.rating = totalRating / product.reviews.length;
-    console.log(product, "product");
+    product.rating = (totalRating / product.reviews.length).toFixed(1);
     await product.save();
     res.status(201).json({ message: "Review added" });
   } catch (error) {

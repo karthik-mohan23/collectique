@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../features/cart/cartSlice";
@@ -17,17 +17,18 @@ import axios from "axios";
 import { useProductsContext } from "../context/useProductsContext";
 
 const ProductDetails = () => {
+  const [shouldRefetch, setShouldRefetch] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
   const { user } = useAuthContext();
   const [qty, setQty] = useState(1);
   const { loading, error, productDetails } = useFetchProductDetails(id);
   // to refetch data again after submitting review
-  const {
-    fetchProducts,
-    loading: productsLoading,
-    error: productsError,
-  } = useProductsContext();
+  // const {
+  //   fetchProducts,
+  //   loading: productsLoading,
+  //   error: productsError,
+  // } = useProductsContext();
 
   // rating
   const [starRating, setStarRating] = useState(1);
@@ -60,7 +61,7 @@ const ProductDetails = () => {
       setStarRating(1);
       setComment("");
       // refetch
-      fetchProducts();
+      setShouldRefetch(true);
       console.log("Review submitted successfully:", response.data);
       toast.success("Review submitted successfully");
     } catch (error) {
@@ -68,12 +69,20 @@ const ProductDetails = () => {
       console.error("Error submitting review:", error);
     }
   };
+  useEffect(() => {
+    if (shouldRefetch) {
+      // Call your fetch hook here
+      useFetchProductDetails(id);
+      // Reset the shouldRefetch state
+      setShouldRefetch(false);
+    }
+  }, [shouldRefetch, id]);
 
-  if (loading || productsLoading) {
+  if (loading) {
     return <Loader />;
   }
 
-  if (error || productsError) {
+  if (error) {
     return <Error />;
   }
   const {
@@ -93,7 +102,7 @@ const ProductDetails = () => {
   console.log(productDetails, user?.name);
 
   return (
-    <div className="flex flex-wrap justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
+    <div className="flex  justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
       {/* product img container */}
       <div className="max-w-sm">
         <img src={image} alt={name} className="rounded-lg" />

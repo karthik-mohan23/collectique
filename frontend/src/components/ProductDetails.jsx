@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { addToCart } from "../features/cart/cartSlice";
 import useFetchProductDetails from "../hooks/useFetchProductDetails";
 import Loader from "./Loader";
@@ -150,65 +150,87 @@ const ProductDetails = () => {
           {/* user review */}
           <div className="flex flex-col gap-4">
             {/* add rating */}
-            <div>
-              <h3 className="text-[1rem]">Add a review</h3>
-            </div>
-            {/* end of add rating */}
-            {/* star rating component */}
-            <div className="rating">
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                value="1"
-                checked={starRating === 1}
-                onChange={handleRatingChange}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                value="2"
-                checked={starRating === 2}
-                onChange={handleRatingChange}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                value="3"
-                checked={starRating === 3}
-                onChange={handleRatingChange}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                value="4"
-                checked={starRating === 4}
-                onChange={handleRatingChange}
-              />
-              <input
-                type="radio"
-                name="rating-2"
-                className="mask mask-star-2 bg-orange-400"
-                value="5"
-                checked={starRating === 5}
-                onChange={handleRatingChange}
-              />
-            </div>
-            {/* end of star rating */}
+            {/* disable writing review for admin users  */}
+            {!user?.isAdmin && (
+              <>
+                <div>
+                  <h3 className="text-[1rem]">Add a review</h3>
+                </div>
+                {/* end of add rating */}
+                {/* star rating component */}
+                <div className="rating">
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                    value="1"
+                    checked={starRating === 1}
+                    onChange={handleRatingChange}
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                    value="2"
+                    checked={starRating === 2}
+                    onChange={handleRatingChange}
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                    value="3"
+                    checked={starRating === 3}
+                    onChange={handleRatingChange}
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                    value="4"
+                    checked={starRating === 4}
+                    onChange={handleRatingChange}
+                  />
+                  <input
+                    type="radio"
+                    name="rating-2"
+                    className="mask mask-star-2 bg-orange-400"
+                    value="5"
+                    checked={starRating === 5}
+                    onChange={handleRatingChange}
+                  />
+                </div>
+                {/* end of star rating */}
 
-            {/* write review */}
-            <textarea
-              className="textarea textarea-secondary"
-              name="comment"
-              value={comment}
-              onChange={handleCommentChange}
-              placeholder="write a review"></textarea>
-            <button className="btn btn-accent" onClick={handleReviewSubmit}>
-              Submit
-            </button>
+                {/* write review */}
+
+                <textarea
+                  className="textarea textarea-secondary"
+                  name="comment"
+                  value={comment}
+                  onChange={handleCommentChange}
+                  placeholder="write a review"></textarea>
+                {/* restrict users from writing review if they are not logged in */}
+                {user ? (
+                  <button
+                    className="btn btn-accent"
+                    onClick={handleReviewSubmit}>
+                    Submit
+                  </button>
+                ) : (
+                  <>
+                    <p>
+                      Please{" "}
+                      <Link className="link link-secondary" to="/login">
+                        log in
+                      </Link>{" "}
+                      to write a review.
+                    </p>
+                  </>
+                )}
+              </>
+            )}
+
             {/* end of write review */}
             {/* comments */}
             <h4 className="text-[1rem] font-bold pt-5 opacity-75">

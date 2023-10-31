@@ -2,7 +2,7 @@ const products = [
   {
     name: "Handmade Damascus Knives",
     image:
-      "https://i.etsystatic.com/44305144/r/il/511e5d/5052531634/il_794xN.5052531634_2171.jpg",
+      "https://images.unsplash.com/photo-1609467334293-030ac6448fd8?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a25pdmVzfGVufDB8fDB8fHww",
     description:
       "Handmade , Forged Damascus Steel (1095 / 15n20) Precise Twist Pattern, High Quality Hand Forged Kitchen,Chef Knife Set offered by Master Blade For Kitchen, Camping And Hunting",
     seller: "Texan",
@@ -42,11 +42,11 @@ const products = [
     assured: true,
   },
   {
-    name: "Handblown Teardrop Necklace",
+    name: "Handblown  Necklace",
     image:
       "https://i.etsystatic.com/6401969/r/il/3c8621/455605970/il_794xN.455605970_b75x.jpg",
     description:
-      "This delicate handblown glass drop filled is with real dried dandelion seeds, it comes with a bronze bead cap and a short delicate bronze necklace. All our dandelion seeds are carefully dried and processed by us in a special procedure, so that they remain preserved.",
+      "This delicate handblown is filled with real dried dandelion seeds, it comes with a blue bead cap and a short delicate bronze necklace. All our dandelion seeds are carefully dried and processed by us in a special procedure, so that they remain preserved.",
     seller: "Glassfrei",
     category: "necklace",
     price: 3170,

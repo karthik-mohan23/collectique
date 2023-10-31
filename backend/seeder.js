@@ -24,11 +24,11 @@ const seedData = async () => {
     // to get admin user
     const adminUser = seedUsers[0]._id;
     // add amin user to each product
-    const adminAddedProducts = productsData.map((product) => {
-      return { ...product, user: adminUser };
-    });
+    // const adminAddedProducts = productsData.map((product) => {
+    //   return { ...product, user: adminUser };
+    // });
     // seed this products data to DB
-    await productsModel.insertMany(adminAddedProducts);
+    // await productsModel.insertMany(adminAddedProducts);
     console.log("Data Seeded to DB");
     process.exit();
   } catch (error) {

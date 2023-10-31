@@ -84,7 +84,7 @@ const ProductDetails = () => {
   } = productDetails;
 
   return (
-    <div className="flex  justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
+    <div className="flex flex-wrap  justify-between gap-5 py-16 w-[90%] max-w-4xl mx-auto">
       {/* product img container */}
       <div className="max-w-sm">
         <img src={image} alt={name} className="rounded-lg" />

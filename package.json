@@ -4,7 +4,7 @@
   "description": "ecommerce app for retro and vintage products",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "seed": "node backend/seeder",
     "clear": "node backend/seeder -d",

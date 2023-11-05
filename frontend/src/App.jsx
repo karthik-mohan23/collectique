@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import store from "./utils/store";
 import { Provider } from "react-redux";
 import { ProductsProvider } from "./context/useProductsContext";

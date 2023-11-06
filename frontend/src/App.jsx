@@ -34,6 +34,7 @@ import {
 import { AuthContextProvider } from "./context/useAuthContext";
 import { AppUsersProvider } from "./context/useAppUsersContext";
 import { AppOrdersProvider } from "./context/useAppOrdersContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (

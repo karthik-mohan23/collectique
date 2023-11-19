@@ -1,21 +1,69 @@
-<h1>Collectique</h1>
-<p>Collectique is an ecommerce website that sells vintage and traditional handcrafted products.</p>
-<h2>Tech Stack</h2>
-<li>Frontend: React, TaiwlindCSS ,daisyUI , Lottie flies</li>
-<li>Backend: Nodejs, Expressjs</li>
-<li>Database: MongoDB</li>
-<li>Payment Gateway Integration: Razorpay</li>
-<h2>Features</h2>
-<li>JWT authentication and role-based authorization</li>
-<li>Debouncing search for products</li>
-<li>Filter products by name, price, etc.</li>
-<li>Show online status of users</li>
-<li>Animations using Lottie files for better UX</li>
-<li>Users can add product ratings and reviews</li>
-<li>Admin dashboard for managing products, users and orders</li>
-<li>Integration with Razorpay for payments</li>
-<li>User order history</li>
-<li>Image upload capability for product images</li>
-<li>Dark and light mode</li>
-<li>Responsive and elegant UI designed using TailwindCSS and daisyUI</li>
-<h2>Screenshots</h2>
+
+## Overview
+
+
+Collectique is an ecommerce website that sets the standard for modern online shopping experiences. With a clean and elegant UI, it demonstrates how an ecommerce platform can be both visually appealing and high-performing, offering users a seamless and refined shopping journey.
+
+## Screenshots
+![Untitled design (3)](https://github.com/karthik-mohan23/collectique/assets/132973611/8ff8898d-d158-439f-bc28-7bb6b4bc23c2)
+
+
+## Tech Stack
+
+- **Frontend:** React, Tailwind CSS, daisyUI, Lottie files
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+
+## Features
+
+1. **Authentication and Authorization:**
+   - Utilizes JWT for secure authentication.
+   - Implements role-based authorization to control user access.
+
+2. **Search and Filtering:**
+   - Debouncing search functionality enhances the product search experience.
+   - Allows users to filter products by name, price, and other parameters.
+
+3. **User Status:**
+   - Displays online status of users, fostering a real-time and engaging experience.
+
+4. **Animations:**
+   - Enhances UX with animated elements using Lottie files.
+
+5. **Product Interaction:**
+   - Users can rate and review products, contributing to a dynamic user-driven environment.
+
+6. **Admin Dashboard:**
+   - Admin functionality for efficient management of products, users, and orders.
+
+7. **Payment Integration:**
+   - Seamless integration with Razorpay for secure and efficient payment processing.
+
+8. **Order History:**
+   - Provides users with a comprehensive order history for tracking and reference.
+
+9. **Image Upload:**
+   - Supports image upload capability using multer. 
+
+13. **Dark and Light Mode:**
+    - Offers a visually appealing and customizable UI with support for dark and light modes.
+
+## Features to Add
+
+- **Image Upload to Cloudinary:**
+  - Allows administrators to seamlessly upload images to Cloudinary.
+
+- **Admin Review Deletion:**
+  - Empower administrators with the ability to manage and maintain the quality of user reviews.
+
+- **Typeahead Dropdown for Search:**
+  - Enhance the search functionality by implementing a typeahead dropdown, providing users with quick and relevant suggestions.
+
+- **Pagination:**
+  - Improve user navigation and experience by introducing pagination for product listings.
+
+- **User Profile Update:**
+  - Enable users to update their profiles, ensuring the most accurate and current information is displayed.
+
+
+

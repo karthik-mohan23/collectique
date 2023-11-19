@@ -3,6 +3,7 @@
 
 
 Collectique is an ecommerce website that sets the standard for modern online shopping experiences. With a clean and elegant UI, it demonstrates how an ecommerce platform can be both visually appealing and high-performing, offering users a seamless and refined shopping journey.
+Visit the [deployed site](https://collectique.onrender.com/) to experience it live.
 
 ## Screenshots
 ![Untitled design (3)](https://github.com/karthik-mohan23/collectique/assets/132973611/8ff8898d-d158-439f-bc28-7bb6b4bc23c2)
